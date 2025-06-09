@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Style Hub - Checkout</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Men's Style Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-badge" id="cartBadge">0</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Checkout Page -->
+    <div class="container" style="padding-top: 100px;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <h2 class="mb-4">Checkout</h2>
+                        <form id="checkoutForm" class="needs-validation" novalidate>
+                            <h5 class="mb-3">Shipping Information</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="shippingName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="shippingName" required>
+                                    <div class="invalid-feedback">Please enter your name.</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="shippingPhone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="shippingPhone" required>
+                                    <div class="invalid-feedback">Please enter your phone number.</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="shippingAddress" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="shippingAddress" required>
+                                <div class="invalid-feedback">Please enter your address.</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="shippingCity" class="form-label">City</label>
+                                    <input type="text" class="form-control" id="shippingCity" required>
+                                    <div class="invalid-feedback">Please enter your city.</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="shippingZip" class="form-label">ZIP/Postal Code</label>
+                                    <input type="text" class="form-control" id="shippingZip" required>
+                                    <div class="invalid-feedback">Please enter your ZIP/postal code.</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="shippingCountry" class="form-label">Country</label>
+                                <input type="text" class="form-control" id="shippingCountry" required>
+                                <div class="invalid-feedback">Please enter your country.</div>
+                            </div>
+                            <hr>
+                            <h5 class="mb-3">Payment Information</h5>
+                            <div class="mb-3">
+                                <label for="cardNumber" class="form-label">Card Number</label>
+                                <input type="text" class="form-control" id="cardNumber" required pattern="[0-9]{16}">
+                                <div class="invalid-feedback">Please enter a valid 16-digit card number.</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="cardExpiry" class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" required pattern="(0[1-9]|1[0-2])\/\d{2}">
+                                    <div class="invalid-feedback">Please enter a valid expiry date (MM/YY).</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="cardCVC" class="form-label">CVC</label>
+                                    <input type="text" class="form-control" id="cardCVC" required pattern="[0-9]{3,4}">
+                                    <div class="invalid-feedback">Please enter a valid CVC.</div>
+                                </div>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="saveInfo">
+                                <label class="form-check-label" for="saveInfo">Save this information for next time</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Place Order</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <h5 class="mb-3">Order Summary</h5>
+                        <div id="checkoutSummary">
+                            <!-- Order summary will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <p>Men's Style Hub is your go-to destination for premium men's fashion. We offer a curated selection of clothing, accessories, and footwear to elevate your style.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>123 Fashion Street, Style District, New York, NY 10001</p>
+                <p>+1 (555) 123-4567</p>
+                <p>info@mensstylehub.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2025 Men's Style Hub. All rights reserved.</div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
