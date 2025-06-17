@@ -30,7 +30,7 @@
                         <a class="nav-link" href="#home" onclick="showPage('home')">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#products" onclick="showPage('products')">Products</a>
+                        <a class="nav-link" href="products.html">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact" onclick="showPage('contact')">Contact</a>
@@ -81,7 +81,7 @@
                 style="background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1500&q=80')">
                 <div class="banner-content">
                     <h1>Gaming Gear</h1>
-                    <p>Keyboards, mice, headsets.</p>
+                    <p>Keyboards, mouse, headsets.</p>
                     <button class="btn btn-hero" onclick="showPage('products')">Shop Gaming Gear</button>
                 </div>
             </div>
@@ -324,7 +324,7 @@
                                     alt="Mouse Logitech G102">
                             </div>
                             <div class="product-info">
-                                <div class="product-title">Logitech G102 Gaming Mouse</div>
+                                <div class="product-title">Logitech G102 Gen 2 Lightsync Gaming Mouse</div>
                                 <div class="product-price">420.000 ₫</div>
                                 <button class="btn btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
@@ -337,7 +337,7 @@
                                     alt="Headphone HyperX Cloud Stinger">
                             </div>
                             <div class="product-info">
-                                <div class="product-title">HyperX Cloud Stinger Headset</div>
+                                <div class="product-title">HyperX Cloud Stinger II - Wireless Gaming Headset </div>
                                 <div class="product-price">799.000 ₫</div>
                                 <button class="btn btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
@@ -487,6 +487,65 @@
             }
             setInterval(nextSlide, 4000);
         })();
+
+        // Cart functionality
+        function addToCart(product) {
+            try {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingItem = cart.find(item => item.id === product.id);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        quantity: 1,
+                        color: 'Default'
+                    });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                // Update cart badge
+                const cartBadge = document.getElementById('cartBadge');
+                if (cartBadge) {
+                    cartBadge.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+                }
+
+                alert('Product added to cart!');
+            } catch (error) {
+                console.error('Error adding to cart:', error);
+                alert('Error adding product to cart. Please try again.');
+            }
+        }
+
+        // Initialize cart badge on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) {
+                cartBadge.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            }
+
+            // Add click handlers for Add to Cart buttons
+            document.querySelectorAll('.btn-add-cart').forEach(button => {
+                button.addEventListener('click', function () {
+                    const productCard = this.closest('.product-card');
+                    const product = {
+                        id: Math.random().toString(36).substr(2, 9), // Generate random ID
+                        name: productCard.querySelector('.product-title').textContent,
+                        price: productCard.querySelector('.product-price').textContent,
+                        image: productCard.querySelector('.product-image img').src,
+                        quantity: 1,
+                        color: 'Default'
+                    };
+                    addToCart(product);
+                });
+            });
+        });
     </script>
 </body>
 

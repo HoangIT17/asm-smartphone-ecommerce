@@ -8,6 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -15,41 +17,42 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <a class="navbar-brand d-flex align-items-center" href="#home">
                 <img src="images/logo.png" alt="Logo" class="navbar-logo me-2">
                 Hoang Computer
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#products">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#contact">Contact</a>
+                        <a class="nav-link" href="register.html">Register</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Login/Register Container -->
-    <div class="container" style="padding-top: 100px;">
+    <!-- Login Form -->
+    <div class="container login-container">
         <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-5">
-                <!-- Login Form -->
-                <div id="loginForm" class="card shadow mb-4">
+            <div class="col-md-6">
+                <div class="login-image">
+                    <img src="./images/logo.png" alt="Login Image" class="img-fluid">
+                </div>
+                <div class="brand-description text-center mt-4">
+                    <h3>Welcome to Hoang Computer</h3>
+                    <p>Your trusted destination for high-quality technology products. We are
+                        committed to providing the best shopping experience for our customers.</p>
+                    <p>HoangTechCom - Trusted Computer Store in Vietnam</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="loginForm" class="card login-card shadow mb-4">
                     <div class="card-body p-5">
-                        <div class="text-center mb-4">
+                        <div class="login-header">
                             <h2>Login</h2>
                             <p class="text-muted">Sign in to your account</p>
                         </div>
-                        <form id="loginFormElement" class="needs-validation" novalidate>
+                        <form id="loginFormElement" class="login-form needs-validation" novalidate>
                             <div class="mb-3">
                                 <label for="loginEmail" class="form-label">Email address</label>
                                 <input type="email" class="form-control" id="loginEmail" required>
@@ -68,53 +71,20 @@
                                 <input type="checkbox" class="form-check-input" id="rememberMe">
                                 <label class="form-check-label" for="rememberMe">Remember me</label>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                            <button type="submit" class="btn login-btn">Login</button>
+                            <div class="social-login">
+                                <p>Or login with</p>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <a href="https://www.facebook.com/login" class="social-btn facebook">
+                                        <i class="fab fa-facebook-f"></i>Facebook
+                                    </a>
+                                    <a href="https://accounts.google.com/login" class="social-btn google">
+                                        <i class="fab fa-google"></i>Google
+                                    </a>
+                                </div>
+                            </div>
                             <div class="text-center mt-3">
-                                <p>Don't have an account? <a href="#" onclick="toggleForms()">Register here</a></p>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <!-- Register Form -->
-                <div id="registerForm" class="card shadow" style="display: none;">
-                    <div class="card-body p-5">
-                        <div class="text-center mb-4">
-                            <h2>Register</h2>
-                            <p class="text-muted">Create your account</p>
-                        </div>
-                        <form id="registerFormElement" class="needs-validation" novalidate>
-                            <div class="mb-3">
-                                <label for="registerName" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="registerName" required>
-                                <div class="invalid-feedback">
-                                    Please enter your full name.
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="registerEmail" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="registerEmail" required>
-                                <div class="invalid-feedback">
-                                    Please enter a valid email address.
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="registerPassword" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="registerPassword" required>
-                                <div class="invalid-feedback">
-                                    Please enter a password.
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirmPassword" required>
-                                <div class="invalid-feedback">
-                                    Please confirm your password.
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100">Register</button>
-                            <div class="text-center mt-3">
-                                <p>Already have an account? <a href="#" onclick="toggleForms()">Login here</a></p>
+                                <p>Don't have an account? <a href="register.html">Register here</a></p>
                             </div>
                         </form>
                     </div>
@@ -123,68 +93,42 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+                    <h5 class="text-uppercase mb-4">About Us</h5>
+                    <p class="text-white text-center">Hoang Computer is a store specializing in high-quality technology
+                        products. We are committed to providing our customers with the best shopping experience.</p>
+                </div>
+                <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+                    <h5 class="text-uppercase mb-4">Quick Links</h5>
+                    <ul class="list-unstyled text-center">
+                        <li class="mb-2"><a href="#home" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#products" class="text-white text-decoration-none">Products</a></li>
+                        <li class="mb-2"><a href="#contact" class="text-white text-decoration-none">Contact</a></li>
+                        <li class="mb-2"><a href="#cart" class="text-white text-decoration-none">Cart</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+                    <h5 class="text-uppercase mb-4">Contact Us</h5>
+                    <p class="text-white mb-2"><i class="fas fa-map-marker-alt me-2"></i>06 Tran Thanh Trung, Thanh Khe,
+                        DaNang</p>
+                    <p class="text-white mb-2"><i class="fas fa-phone me-2"></i>+84 374145631</p>
+                    <p class="text-white mb-2"><i class="fas fa-envelope me-2"></i>pvhoang1701@gmail.com</p>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="text-white mb-0">&copy; 2024 Hoang Computer. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        // Toggle between login and register forms
-        function toggleForms() {
-            const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
-
-            if (loginForm.style.display === 'none') {
-                loginForm.style.display = 'block';
-                registerForm.style.display = 'none';
-            } else {
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'block';
-            }
-        }
-
-        // Handle login form submission
-        document.getElementById('loginFormElement').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-
-            // Here you would typically make an API call to verify credentials
-            // For demo purposes, we'll just redirect to home page
-            window.location.href = 'index.html';
-        });
-
-        // Handle register form submission
-        document.getElementById('registerFormElement').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const name = document.getElementById('registerName').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-
-            // Here you would typically make an API call to register the user
-            // For demo purposes, we'll just show success message and redirect
-            alert('Registration successful! Please login.');
-            toggleForms();
-        });
-
-        // Form validation
-        (function () {
-            'use strict'
-            var forms = document.querySelectorAll('.needs-validation')
-            Array.prototype.slice.call(forms).forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
-    </script>
+    <script src="./js/login.js"></script>
 </body>
 
 </html>

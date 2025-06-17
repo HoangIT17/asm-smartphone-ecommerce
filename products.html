@@ -1,17 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Men's Style Hub - Products</title>
+    <title>Products - Hoang Computer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Existing styles */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-btn {
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .category-btn.active {
+            animation: pulse 1s infinite;
+        }
+
+        .product-image {
+            overflow: hidden;
+        }
+
+        .product-image img {
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .btn-add-cart {
+            transition: all 0.3s ease;
+        }
+
+        .btn-add-cart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Men's Style Hub</a>
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="images/logo.png" alt="Logo" class="navbar-logo me-2">
+                Hoang Computer
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,98 +103,706 @@
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="products.html">Products</a>
+                        <a class="nav-link active" href="products.html">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-badge" id="cartBadge">0</span></a>
+                    <li class="nav-item position-relative">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-badge" id="cartBadge">0</span>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login.html">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.html">Register</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- ...existing code... -->
-    <div class="container" style="padding-top: 100px;">
-        <div class="section-title">
-            <h2>All Products</h2>
-            <p class="lead">Browse our complete collection</p>
+
+    <!-- Products Section -->
+    <section class="products-section py-5">
+        <div class="container">
+            <h2 class="mb-4">Our Products</h2>
+
+            <!-- Category Navigation -->
+            <div class="category-nav mb-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="btn-group w-100" role="group">
+                                <button class="btn btn-outline-primary category-btn animate__animated animate__fadeIn"
+                                    onclick="filterProducts('all')">All Products</button>
+                                <button class="btn btn-outline-primary category-btn animate__animated animate__fadeIn"
+                                    onclick="filterProducts('laptop')">Laptops</button>
+                                <button class="btn btn-outline-primary category-btn animate__animated animate__fadeIn"
+                                    onclick="filterProducts('mouse')">Mouse</button>
+                                <button class="btn btn-outline-primary category-btn animate__animated animate__fadeIn"
+                                    onclick="filterProducts('keyboard')">Keyboards</button>
+                                <button class="btn btn-outline-primary category-btn animate__animated animate__fadeIn"
+                                    onclick="filterProducts('headphone')">Headphones</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="container">
+                <div class="row g-4" id="productsGrid">
+                    <!-- Products will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="container mt-4">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center animate__animated animate__fadeIn">
+                        <!-- Pagination will be dynamically added here -->
+                    </ul>
+                </nav>
+            </div>
         </div>
-        <div class="row mb-4">
-            <div class="col-md-3">
-                <select class="form-control" id="categoryFilter">
-                    <option value="">All Categories</option>
-                    <option value="tshirts">T-Shirts</option>
-                    <option value="shirts">Shirts</option>
-                    <option value="jeans">Jeans</option>
-                    <option value="accessories">Accessories</option>
-                </select>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+                    <h5 class="text-uppercase mb-4">About Us</h5>
+                    <p class="text-muted text-center">Hoang Computer is a store specializing in high-quality technology
+                        products. We are committed to providing our customers with the best shopping experience.</p>
+                </div>
+                <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+                    <h5 class="text-uppercase mb-4">Quick Links</h5>
+                    <ul class="list-unstyled text-center">
+                        <li class="mb-2"><a href="index.html" class="text-muted text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="products.html" class="text-muted text-decoration-none">Products</a>
+                        </li>
+                        <li class="mb-2"><a href="#contact" class="text-muted text-decoration-none">Contact</a></li>
+                        <li class="mb-2"><a href="cart.html" class="text-muted text-decoration-none">Cart</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+                    <h5 class="text-uppercase mb-4">Contact Us</h5>
+                    <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-2"></i>06 Tran Thanh Trung, Thanh Khe,
+                        DaNang</p>
+                    <p class="text-muted mb-2"><i class="fas fa-phone me-2"></i>+84 374145631</p>
+                    <p class="text-muted mb-2"><i class="fas fa-envelope me-2"></i>pvhoang1701@gmail.com</p>
+                </div>
             </div>
-            <div class="col-md-3">
-                <select class="form-control" id="priceFilter">
-                    <option value="">All Prices</option>
-                    <option value="0-50">Under $50</option>
-                    <option value="50-100">$50 - $100</option>
-                    <option value="100-200">$100 - $200</option>
-                    <option value="200+">Over $200</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <select class="form-control" id="sortFilter">
-                    <option value="">Sort By</option>
-                    <option value="price-low">Price: Low to High</option>
-                    <option value="price-high">Price: High to Low</option>
-                    <option value="newest">Newest First</option>
-                    <option value="popular">Most Popular</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search products..." id="searchInput">
-                    <button class="btn btn-primary">
-                        <i class="fas fa-search"></i>
-                    </button>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="text-muted mb-0">&copy; 2024 Hoang Computer. All rights reserved.</p>
                 </div>
             </div>
         </div>
-        <div class="row g-4" id="allProductsContainer">
-            <!-- All products will be loaded here -->
-        </div>
-    </div>
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>About Us</h4>
-                <p>Men's Style Hub is your go-to destination for premium men's fashion. We offer a curated selection of clothing, accessories, and footwear to elevate your style.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact Us</h4>
-                <p>123 Fashion Street, Style District, New York, NY 10001</p>
-                <p>+1 (555) 123-4567</p>
-                <p>info@mensstylehub.com</p>
-            </div>
-        </div>
-        <div class="footer-bottom">© 2025 Men's Style Hub. All rights reserved.</div>
     </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/main.js"></script>
+    <script>
+        // Sample product data
+        const products = {
+            laptop: [
+                {
+                    id: 'laptop1',
+                    name: 'Lenovo ThinkPad X1 Carbon',
+                    price: '36.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop2',
+                    name: 'Asus ROG Zephyrus G14',
+                    price: '29.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop3',
+                    name: 'Dell XPS 13',
+                    price: '32.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop4',
+                    name: 'HP Spectre x360',
+                    price: '28.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop5',
+                    name: 'MacBook Pro 14"',
+                    price: '34.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop6',
+                    name: 'Acer Swift 5',
+                    price: '25.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop7',
+                    name: 'MSI GS66 Stealth',
+                    price: '31.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop8',
+                    name: 'Lenovo Yoga 9i',
+                    price: '27.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop9',
+                    name: 'Asus ZenBook Pro Duo',
+                    price: '39.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop10',
+                    name: 'Dell Alienware x17',
+                    price: '42.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop11',
+                    name: 'HP Omen 15',
+                    price: '29.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop12',
+                    name: 'Acer Predator Helios 300',
+                    price: '26.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop13',
+                    name: 'MSI GE76 Raider',
+                    price: '38.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop14',
+                    name: 'Lenovo Legion 7',
+                    price: '33.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop15',
+                    name: 'Asus TUF Gaming A15',
+                    price: '24.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop16',
+                    name: 'Dell G15',
+                    price: '25.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop17',
+                    name: 'HP Envy 13',
+                    price: '28.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop18',
+                    name: 'Acer ConceptD 7',
+                    price: '35.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop19',
+                    name: 'MSI Creator 15',
+                    price: '36.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop20',
+                    name: 'Lenovo IdeaPad Gaming 3',
+                    price: '22.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop21',
+                    name: 'Asus VivoBook Pro 15',
+                    price: '23.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop22',
+                    name: 'Dell Inspiron 15',
+                    price: '21.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop23',
+                    name: 'HP Pavilion 15',
+                    price: '20.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'laptop24',
+                    name: 'Acer Aspire 5',
+                    price: '19.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                }
+            ],
+            mouse: [
+                {
+                    id: 'mouse1',
+                    name: 'Logitech G Pro X Superlight',
+                    price: '2.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse2',
+                    name: 'Razer Viper Ultimate',
+                    price: '2.790.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse3',
+                    name: 'SteelSeries Prime Pro',
+                    price: '1.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse4',
+                    name: 'Corsair M65 RGB Ultra',
+                    price: '2.490.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse5',
+                    name: 'Logitech MX Master 3S',
+                    price: '2.890.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse6',
+                    name: 'Razer DeathAdder V3 Pro',
+                    price: '2.690.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse7',
+                    name: 'SteelSeries Aerox 9',
+                    price: '2.190.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse8',
+                    name: 'Corsair Dark Core RGB Pro',
+                    price: '2.390.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse9',
+                    name: 'Logitech G502 X Plus',
+                    price: '2.590.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse10',
+                    name: 'Razer Basilisk V3 Pro',
+                    price: '2.490.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse11',
+                    name: 'SteelSeries Prime Pro Wireless',
+                    price: '2.290.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse12',
+                    name: 'Corsair Sabre RGB Pro',
+                    price: '1.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse13',
+                    name: 'Logitech MX Anywhere 3',
+                    price: '2.490.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse14',
+                    name: 'Razer Orochi V2',
+                    price: '1.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse15',
+                    name: 'SteelSeries Rival 3',
+                    price: '1.490.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'mouse16',
+                    name: 'Corsair Katar Pro XT',
+                    price: '1.790.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                }
+            ],
+            keyboard: [
+                {
+                    id: 'keyboard1',
+                    name: 'Logitech G915 TKL',
+                    price: '4.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard2',
+                    name: 'Razer Huntsman V2',
+                    price: '5.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard3',
+                    name: 'SteelSeries Apex Pro',
+                    price: '4.490.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard4',
+                    name: 'Corsair K95 RGB Platinum',
+                    price: '4.790.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard5',
+                    name: 'Logitech G915 RGB',
+                    price: '4.890.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard6',
+                    name: 'Razer BlackWidow V4 Pro',
+                    price: '5.490.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard7',
+                    name: 'SteelSeries Apex 7',
+                    price: '3.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard8',
+                    name: 'Corsair K70 RGB Pro',
+                    price: '4.290.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard9',
+                    name: 'Logitech G Pro X',
+                    price: '4.590.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard10',
+                    name: 'Razer Huntsman Mini',
+                    price: '3.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard11',
+                    name: 'SteelSeries Apex 3',
+                    price: '2.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard12',
+                    name: 'Corsair K65 RGB Mini',
+                    price: '3.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard13',
+                    name: 'Logitech MX Keys',
+                    price: '3.490.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard14',
+                    name: 'Razer BlackWidow V3',
+                    price: '3.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard15',
+                    name: 'SteelSeries Apex 5',
+                    price: '3.490.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'keyboard16',
+                    name: 'Corsair K60 RGB Pro',
+                    price: '3.290.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                }
+            ],
+            headphone: [
+                {
+                    id: 'headphone1',
+                    name: 'Logitech G Pro X Wireless',
+                    price: '3.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone2',
+                    name: 'Razer Barracuda Pro',
+                    price: '4.490.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone3',
+                    name: 'SteelSeries Arctis Pro',
+                    price: '3.790.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone4',
+                    name: 'Corsair Virtuoso RGB',
+                    price: '3.490.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone5',
+                    name: 'Logitech G Pro X 2',
+                    price: '4.290.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone6',
+                    name: 'Razer BlackShark V2 Pro',
+                    price: '4.190.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone7',
+                    name: 'SteelSeries Arctis Nova Pro',
+                    price: '4.390.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone8',
+                    name: 'Corsair HS80 RGB',
+                    price: '3.890.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone9',
+                    name: 'Logitech G435 Lightspeed',
+                    price: '2.290.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone10',
+                    name: 'Razer Barracuda X',
+                    price: '2.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone11',
+                    name: 'SteelSeries Arctis 7',
+                    price: '2.790.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone12',
+                    name: 'Corsair HS65 Surround',
+                    price: '2.490.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone13',
+                    name: 'Logitech G733',
+                    price: '2.690.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone14',
+                    name: 'Razer Kraken V3',
+                    price: '2.390.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone15',
+                    name: 'SteelSeries Arctis 3',
+                    price: '1.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone16',
+                    name: 'Corsair HS50 Pro',
+                    price: '1.790.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                }
+            ]
+        };
+
+        // Pagination settings
+        const itemsPerPage = 8;
+        let currentPage = 1;
+
+        // Function to display products with pagination
+        function displayProducts(category) {
+            const productsGrid = document.getElementById('productsGrid');
+            const pagination = document.querySelector('.pagination');
+            let productsToShow = [];
+
+            // Clear existing products
+            productsGrid.innerHTML = '';
+            pagination.innerHTML = '';
+
+            // Get products based on category
+            if (category === 'all') {
+                // Combine all products and shuffle them
+                productsToShow = [
+                    ...products.laptop,
+                    ...products.mouse,
+                    ...products.keyboard,
+                    ...products.headphone
+                ];
+                shuffleArray(productsToShow);
+            } else {
+                productsToShow = products[category];
+            }
+
+            // Calculate pagination
+            const totalPages = Math.ceil(productsToShow.length / itemsPerPage);
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const currentProducts = productsToShow.slice(startIndex, endIndex);
+
+            // Display products with animation
+            currentProducts.forEach((product, index) => {
+                const productCard = document.createElement('div');
+                productCard.className = 'col-md-3 animate__animated animate__fadeIn';
+                productCard.style.animationDelay = `${index * 0.1}s`;
+                productCard.innerHTML = `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}" class="img-fluid">
+                        </div>
+                        <div class="product-info p-3">
+                            <h5 class="product-title">${product.name}</h5>
+                            <p class="product-price">${product.price}</p>
+                            <button class="btn btn-primary btn-add-cart w-100" onclick="addToCart(${JSON.stringify(product).replace(/'/g, "&#39;")})">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+
+            // Update pagination with animation
+            for (let i = 1; i <= totalPages; i++) {
+                const li = document.createElement('li');
+                li.className = `page-item ${i === currentPage ? 'active' : ''} animate__animated animate__fadeIn`;
+                li.style.animationDelay = `${i * 0.1}s`;
+                li.innerHTML = `
+                    <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+                `;
+                pagination.appendChild(li);
+            }
+
+            // Update active category button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(category)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Function to shuffle array (for random product display)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Function to change page
+        function changePage(page) {
+            currentPage = page;
+            const category = new URLSearchParams(window.location.search).get('category') || 'all';
+            displayProducts(category);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Function to filter products by category
+        function filterProducts(category) {
+            currentPage = 1;
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(category)) {
+                    btn.classList.add('active', 'animate__animated', 'animate__pulse');
+                    setTimeout(() => btn.classList.remove('animate__pulse'), 1000);
+                }
+            });
+            displayProducts(category);
+            updateURL(category);
+        }
+
+        // Add to cart function
+        function addToCart(product) {
+            try {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingItem = cart.find(item => item.id === product.id);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        quantity: 1,
+                        color: 'Default'
+                    });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                // Update cart badge
+                const cartBadge = document.getElementById('cartBadge');
+                if (cartBadge) {
+                    cartBadge.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+                }
+
+                alert('Product added to cart!');
+            } catch (error) {
+                console.error('Error adding to cart:', error);
+                alert('Error adding product to cart. Please try again.');
+            }
+        }
+
+        // Initialize with animation
+        document.addEventListener('DOMContentLoaded', function () {
+            const category = new URLSearchParams(window.location.search).get('category') || 'all';
+            displayProducts(category);
+
+            // Add animation to cart badge
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) {
+                cartBadge.classList.add('animate__animated', 'animate__bounceIn');
+            }
+        });
+    </script>
 </body>
+
 </html>

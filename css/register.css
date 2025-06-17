@@ -1,0 +1,278 @@
+.navbar {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: static;
+  /* Đặt position về static để loại bỏ fixed */
+}
+
+.navbar-logo {
+  animation: spin 10s linear infinite;
+  /* Thêm animation xoay cho logo */
+}
+
+.register-container {
+  padding-top: 0px;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: flex-start;
+  /* margin-top: 20px; */
+}
+
+.register-image {
+  height: 58%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.brand-description {
+  margin-top: 0;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.brand-description h3 {
+  color: #007bff;
+  margin-bottom: 10px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.brand-description p {
+  color: var(--primary-color);
+  font-size: 1rem;
+  animation: slideIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.register-card {
+  border: none;
+  border-radius: 15px;
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.register-header h2 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.register-form .form-control {
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-form .form-control:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+.register-form .form-label {
+  color: #2c3e50;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.register-form .input-group-text {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-right: none;
+}
+
+.register-form .input-group .form-control {
+  border-left: none;
+}
+
+.register-form .input-group .form-control:focus {
+  border-left: none;
+  box-shadow: none;
+}
+
+.register-form .input-group:focus-within {
+  box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+.register-form .input-group:focus-within .input-group-text,
+.register-form .input-group:focus-within .form-control {
+  border-color: #3498db;
+}
+
+.register-btn {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  background: linear-gradient(135deg, #2980b9, #3498db);
+  color: white;
+}
+
+.register-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+}
+
+.social-register {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.social-register p {
+  color: #666;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.social-register p::before,
+.social-register p::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 30%;
+  height: 1px;
+  background: #ddd;
+}
+
+.social-register p::before {
+  left: 0;
+}
+
+.social-register p::after {
+  right: 0;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-btn i {
+  margin-right: 8px;
+}
+
+.social-btn.facebook {
+  background: #3b5998;
+}
+
+.social-btn.google {
+  background: #db4437;
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.form-check-input:checked {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+.form-check-label {
+  color: #666;
+}
+
+.form-check-label a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.form-check-label a:hover {
+  color: #2980b9;
+}
+
+/* Password toggle button */
+#togglePassword {
+  border: 1px solid #ddd;
+  border-left: none;
+  background-color: #f8f9fa;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+#togglePassword:hover {
+  color: #3498db;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .register-container {
+    padding-top: 80px;
+  }
+
+  .register-image img {
+    max-width: 150px;
+  }
+
+  .brand-description h3 {
+    font-size: 1.5rem;
+  }
+
+  .brand-description p {
+    font-size: 0.9rem;
+  }
+
+  .register-card {
+    margin-top: 1rem;
+  }
+
+  .social-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+}
