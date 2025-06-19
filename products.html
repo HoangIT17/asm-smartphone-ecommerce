@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - Hoang Computer</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/cart.css">
     <style>
         /* Existing styles */
         .product-card {
@@ -103,13 +105,13 @@
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="products.html">Products</a>
+                        <a class="nav-link" href="products.html">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                     <li class="nav-item position-relative">
-                        <a class="nav-link" href="cart.html">
+                        <a class="nav-link" href="checkout.html">
                             <i class="fas fa-shopping-cart"></i>
                             <span class="cart-badge" id="cartBadge">0</span>
                         </a>
@@ -183,7 +185,7 @@
                         <li class="mb-2"><a href="products.html" class="text-muted text-decoration-none">Products</a>
                         </li>
                         <li class="mb-2"><a href="#contact" class="text-muted text-decoration-none">Contact</a></li>
-                        <li class="mb-2"><a href="cart.html" class="text-muted text-decoration-none">Cart</a></li>
+                        <li class="mb-2"><a href="checkout.html" class="text-muted text-decoration-none">Cart</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
@@ -204,444 +206,205 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./js/cart.js"></script>
     <script>
-        // Sample product data
+        // Product data
         const products = {
             laptop: [
                 {
                     id: 'laptop1',
-                    name: 'Lenovo ThinkPad X1 Carbon',
-                    price: '36.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                    name: 'Acer Aspire 3',
+                    price: '11.990.000 ₫',
+                    image: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTY6oy4Pnt4k8jMeJG9Bbasu0B8Gmd5pJ1epqFFzueeM5jCYGQtCcDP0WGNbmojpJx001h0kRkKjW4-b8aPDwevhwETLCZ4rcBeUlOu4VLgVpFEhqujzWqF7w'
                 },
                 {
                     id: 'laptop2',
-                    name: 'Asus ROG Zephyrus G14',
-                    price: '29.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                    name: 'HP Pavilion 15 i7',
+                    price: '18.490.000 ₫',
+                    image: 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSosLf4ndVR8x6GqYBdwhTAlT4G1zpqyddne00wI_8iE_NmFokETx_yyFCIkkGy49UFVcPl7MPRtMIDt-hx6n_ixw5Jik_MKZI0bQWqmK5lzWq2Fq4iSp7scg'
                 },
                 {
                     id: 'laptop3',
-                    name: 'Dell XPS 13',
-                    price: '32.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                    name: 'Dell Inspiron 15',
+                    price: '15.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'laptop4',
-                    name: 'HP Spectre x360',
-                    price: '28.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                    name: 'Lenovo IdeaPad 3',
+                    price: '12.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'laptop5',
-                    name: 'MacBook Pro 14"',
-                    price: '34.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                    name: 'ASUS VivoBook 15',
+                    price: '14.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'laptop6',
-                    name: 'Acer Swift 5',
-                    price: '25.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                    name: 'MSI Modern 15',
+                    price: '16.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'laptop7',
-                    name: 'MSI GS66 Stealth',
-                    price: '31.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                    name: 'Acer Swift 3',
+                    price: '17.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'laptop8',
-                    name: 'Lenovo Yoga 9i',
-                    price: '27.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop9',
-                    name: 'Asus ZenBook Pro Duo',
-                    price: '39.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop10',
-                    name: 'Dell Alienware x17',
-                    price: '42.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop11',
-                    name: 'HP Omen 15',
-                    price: '29.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop12',
-                    name: 'Acer Predator Helios 300',
-                    price: '26.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop13',
-                    name: 'MSI GE76 Raider',
-                    price: '38.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop14',
-                    name: 'Lenovo Legion 7',
-                    price: '33.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop15',
-                    name: 'Asus TUF Gaming A15',
-                    price: '24.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop16',
-                    name: 'Dell G15',
-                    price: '25.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop17',
                     name: 'HP Envy 13',
-                    price: '28.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop18',
-                    name: 'Acer ConceptD 7',
-                    price: '35.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop19',
-                    name: 'MSI Creator 15',
-                    price: '36.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop20',
-                    name: 'Lenovo IdeaPad Gaming 3',
-                    price: '22.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop21',
-                    name: 'Asus VivoBook Pro 15',
-                    price: '23.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop22',
-                    name: 'Dell Inspiron 15',
-                    price: '21.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop23',
-                    name: 'HP Pavilion 15',
-                    price: '20.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'laptop24',
-                    name: 'Acer Aspire 5',
                     price: '19.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop'
+                    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=400&fit=crop'
                 }
             ],
             mouse: [
                 {
                     id: 'mouse1',
-                    name: 'Logitech G Pro X Superlight',
-                    price: '2.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                    name: 'Logitech G102 Gen 2',
+                    price: '420.000 ₫',
+                    image: 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSdNzgLyJnD_Ig6TdpmS1Pv6SqJrsYToxDkyYdCuQWQO3vXxpxxG7rKg79mFcUG0vabEKMSd-Mhu9KOndRd6tLu3qUyksQhDW7I6IWwEZnHCWbyUTx78tSwcQ'
                 },
                 {
                     id: 'mouse2',
-                    name: 'Razer Viper Ultimate',
-                    price: '2.790.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                    name: 'Razer DeathAdder V2',
+                    price: '1.290.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'mouse3',
-                    name: 'SteelSeries Prime Pro',
-                    price: '1.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                    name: 'SteelSeries Rival 3',
+                    price: '890.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'mouse4',
-                    name: 'Corsair M65 RGB Ultra',
-                    price: '2.490.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                    name: 'Corsair M65 RGB',
+                    price: '1.590.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'mouse5',
-                    name: 'Logitech MX Master 3S',
-                    price: '2.890.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                    name: 'Logitech G Pro X',
+                    price: '2.190.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'mouse6',
-                    name: 'Razer DeathAdder V3 Pro',
-                    price: '2.690.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                    name: 'Razer Viper Mini',
+                    price: '690.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'mouse7',
-                    name: 'SteelSeries Aerox 9',
-                    price: '2.190.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                    name: 'SteelSeries Prime',
+                    price: '1.890.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'mouse8',
-                    name: 'Corsair Dark Core RGB Pro',
-                    price: '2.390.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'mouse9',
-                    name: 'Logitech G502 X Plus',
-                    price: '2.590.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'mouse10',
-                    name: 'Razer Basilisk V3 Pro',
-                    price: '2.490.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'mouse11',
-                    name: 'SteelSeries Prime Pro Wireless',
-                    price: '2.290.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'mouse12',
-                    name: 'Corsair Sabre RGB Pro',
-                    price: '1.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'mouse13',
-                    name: 'Logitech MX Anywhere 3',
-                    price: '2.490.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'mouse14',
-                    name: 'Razer Orochi V2',
-                    price: '1.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'mouse15',
-                    name: 'SteelSeries Rival 3',
-                    price: '1.490.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'mouse16',
-                    name: 'Corsair Katar Pro XT',
-                    price: '1.790.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop'
+                    name: 'Corsair Harpoon RGB',
+                    price: '790.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=400&fit=crop'
                 }
             ],
             keyboard: [
                 {
                     id: 'keyboard1',
-                    name: 'Logitech G915 TKL',
-                    price: '4.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                    name: 'Logitech G Pro',
+                    price: '2.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'keyboard2',
-                    name: 'Razer Huntsman V2',
-                    price: '5.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                    name: 'Razer BlackWidow V3',
+                    price: '3.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'keyboard3',
                     name: 'SteelSeries Apex Pro',
-                    price: '4.490.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                    price: '4.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'keyboard4',
-                    name: 'Corsair K95 RGB Platinum',
-                    price: '4.790.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                    name: 'Corsair K70 RGB',
+                    price: '3.590.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'keyboard5',
-                    name: 'Logitech G915 RGB',
-                    price: '4.890.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                    name: 'Logitech G915',
+                    price: '5.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'keyboard6',
-                    name: 'Razer BlackWidow V4 Pro',
-                    price: '5.490.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                    name: 'Razer Huntsman',
+                    price: '4.590.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'keyboard7',
                     name: 'SteelSeries Apex 7',
-                    price: '3.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                    price: '3.890.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=600&h=400&fit=crop'
                 },
                 {
                     id: 'keyboard8',
-                    name: 'Corsair K70 RGB Pro',
-                    price: '4.290.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'keyboard9',
-                    name: 'Logitech G Pro X',
-                    price: '4.590.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'keyboard10',
-                    name: 'Razer Huntsman Mini',
-                    price: '3.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'keyboard11',
-                    name: 'SteelSeries Apex 3',
-                    price: '2.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'keyboard12',
-                    name: 'Corsair K65 RGB Mini',
-                    price: '3.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'keyboard13',
-                    name: 'Logitech MX Keys',
-                    price: '3.490.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'keyboard14',
-                    name: 'Razer BlackWidow V3',
-                    price: '3.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'keyboard15',
-                    name: 'SteelSeries Apex 5',
-                    price: '3.490.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'keyboard16',
-                    name: 'Corsair K60 RGB Pro',
-                    price: '3.290.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop'
+                    name: 'Corsair K100 RGB',
+                    price: '6.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=600&h=400&fit=crop'
                 }
             ],
             headphone: [
                 {
                     id: 'headphone1',
-                    name: 'Logitech G Pro X Wireless',
-                    price: '3.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'headphone2',
-                    name: 'Razer Barracuda Pro',
-                    price: '4.490.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'headphone3',
-                    name: 'SteelSeries Arctis Pro',
-                    price: '3.790.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'headphone4',
-                    name: 'Corsair Virtuoso RGB',
-                    price: '3.490.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'headphone5',
-                    name: 'Logitech G Pro X 2',
-                    price: '4.290.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'headphone6',
-                    name: 'Razer BlackShark V2 Pro',
-                    price: '4.190.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'headphone7',
-                    name: 'SteelSeries Arctis Nova Pro',
-                    price: '4.390.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'headphone8',
-                    name: 'Corsair HS80 RGB',
-                    price: '3.890.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'headphone9',
-                    name: 'Logitech G435 Lightspeed',
-                    price: '2.290.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'headphone10',
-                    name: 'Razer Barracuda X',
-                    price: '2.990.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'headphone11',
-                    name: 'SteelSeries Arctis 7',
-                    price: '2.790.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'headphone12',
-                    name: 'Corsair HS65 Surround',
-                    price: '2.490.000 ₫',
-                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
-                },
-                {
-                    id: 'headphone13',
                     name: 'Logitech G733',
                     price: '2.690.000 ₫',
                     image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
                 },
                 {
-                    id: 'headphone14',
+                    id: 'headphone2',
+                    name: 'Razer Barracuda X',
+                    price: '2.990.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone3',
+                    name: 'SteelSeries Arctis 7',
+                    price: '2.790.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone4',
+                    name: 'Corsair HS65 Surround',
+                    price: '2.490.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone5',
+                    name: 'Logitech G733',
+                    price: '2.690.000 ₫',
+                    image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
+                },
+                {
+                    id: 'headphone6',
                     name: 'Razer Kraken V3',
                     price: '2.390.000 ₫',
                     image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
                 },
                 {
-                    id: 'headphone15',
+                    id: 'headphone7',
                     name: 'SteelSeries Arctis 3',
                     price: '1.990.000 ₫',
                     image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
                 },
                 {
-                    id: 'headphone16',
+                    id: 'headphone8',
                     name: 'Corsair HS50 Pro',
                     price: '1.790.000 ₫',
                     image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop'
@@ -696,7 +459,7 @@
                         <div class="product-info p-3">
                             <h5 class="product-title">${product.name}</h5>
                             <p class="product-price">${product.price}</p>
-                            <button class="btn btn-primary btn-add-cart w-100" onclick="addToCart(${JSON.stringify(product).replace(/'/g, "&#39;")})">
+                            <button class="btn btn-primary btn-add-cart w-100" data-product='${JSON.stringify(product)}'>
                                 Add to Cart
                             </button>
                         </div>
@@ -755,40 +518,6 @@
             });
             displayProducts(category);
             updateURL(category);
-        }
-
-        // Add to cart function
-        function addToCart(product) {
-            try {
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const existingItem = cart.find(item => item.id === product.id);
-
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push({
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        image: product.image,
-                        quantity: 1,
-                        color: 'Default'
-                    });
-                }
-
-                localStorage.setItem('cart', JSON.stringify(cart));
-
-                // Update cart badge
-                const cartBadge = document.getElementById('cartBadge');
-                if (cartBadge) {
-                    cartBadge.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-                }
-
-                alert('Product added to cart!');
-            } catch (error) {
-                console.error('Error adding to cart:', error);
-                alert('Error adding product to cart. Please try again.');
-            }
         }
 
         // Initialize with animation

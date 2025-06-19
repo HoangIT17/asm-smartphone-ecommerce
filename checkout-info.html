@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Information - Checkout</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/checkout.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
+</head>
+
+<body style="background: #f5f5fa; min-height: 100vh;">
+  <!-- Navigation/Header -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/logo.png" alt="Logo" class="navbar-logo me-2">
+        Hoang Computer
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item position-relative">
+            <a class="nav-link" href="checkout.html">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-badge" id="cartBadge">0</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="register.html">Register</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container py-5" style="max-width: 900px; margin-top: 80px;">
+    <div class="d-flex align-items-center justify-content-center mb-4">
+      <i class="fas fa-user-check fa-2x text-info me-2"></i>
+      <h2 class="fw-bold mb-0" style="color: #ee4d2d; letter-spacing: 1px;">Customer Information & Payment</h2>
+    </div>
+    <!-- Cart Items -->
+    <div class="cart-table fade show card shadow-lg border-0 mb-4 rounded-4 overflow-hidden">
+      <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center" style="background: #fff;">
+        <i class="fas fa-shopping-cart text-warning me-2"></i>
+        <span class="fw-bold text-dark" style="font-size: 1.2rem;">Cart Items</span>
+      </div>
+      <div class="card-body p-0">
+        <div id="checkoutItems"></div>
+      </div>
+    </div>
+    <!-- Order Summary -->
+    <div class="order-summary-card fade show card shadow-lg border-0 mb-4 rounded-4 overflow-hidden">
+      <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center" style="background: #fff;">
+        <i class="fas fa-calculator text-success me-2"></i>
+        <span class="fw-bold text-dark" style="font-size: 1.2rem;">Order Summary</span>
+      </div>
+      <div class="card-body pb-2">
+        <div class="summary-row d-flex justify-content-between mb-2">
+          <span>Subtotal</span>
+          <span id="orderSubtotal" class="fw-bold text-dark">0 ₫</span>
+        </div>
+        <div class="summary-row d-flex justify-content-between mb-2">
+          <span>Shipping Fee</span>
+          <span id="orderShipping" class="fw-bold text-dark">30,000 ₫</span>
+        </div>
+        <div class="summary-row d-flex justify-content-between mb-2">
+          <span>Tax (10%)</span>
+          <span id="orderTax" class="fw-bold text-dark">0 ₫</span>
+        </div>
+        <div class="summary-row total-row d-flex justify-content-between border-top pt-3 mt-3">
+          <span class="fw-bold" style="font-size: 1.1rem; color: #ee4d2d;">Total Payment</span>
+          <span id="orderTotal" class="fw-bold" style="font-size: 1.2rem; color: #ee4d2d;">0 ₫</span>
+        </div>
+      </div>
+    </div>
+    <!-- Customer Info Form -->
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden mb-4">
+      <div class="card-body">
+        <form id="customerInfoForm">
+          <div class="mb-3">
+            <label class="form-label">Full Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control rounded-pill border-2 py-2 px-3" id="customerName" required
+              placeholder="Enter your full name">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Phone Number <span class="text-danger">*</span></label>
+            <input type="tel" class="form-control rounded-pill border-2 py-2 px-3" id="customerPhone" required
+              pattern="[0-9]{9,12}" placeholder="Enter your phone number">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email <span class="text-danger">*</span></label>
+            <input type="email" class="form-control rounded-pill border-2 py-2 px-3" id="customerEmail" required
+              placeholder="Enter your email">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Province/City <span class="text-danger">*</span></label>
+            <select class="form-select select2 rounded-pill border-2 py-2 px-3" id="selectProvince" required
+              style="width:100%"></select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">District <span class="text-danger">*</span></label>
+            <select class="form-select select2 rounded-pill border-2 py-2 px-3" id="selectDistrict" required
+              style="width:100%"></select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Address Detail <span class="text-danger">*</span></label>
+            <input type="text" class="form-control rounded-pill border-2 py-2 px-3" id="customerAddressDetail" required
+              placeholder="House number, street, ...">
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Payment Method <span class="text-danger">*</span></label>
+            <select class="form-select rounded-pill border-2 py-2 px-3" id="paymentMethod" required>
+              <option value="">Select payment method</option>
+              <option value="cod">Cash on Delivery (COD)</option>
+              <option value="bank">Bank Transfer</option>
+              <option value="momo">MoMo E-wallet</option>
+              <option value="zalopay">ZaloPay</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-lg w-100 rounded-pill fw-bold"
+            style="background: #ee4d2d; color: #fff; letter-spacing: 1px;">Confirm Purchase</button>
+        </form>
+        <div id="confirmationMessage" class="alert alert-success mt-4 d-none animate__animated animate__fadeIn"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-5">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+          <h5 class="text-uppercase mb-4">About Us</h5>
+          <p class="text-muted text-center">Hoang Computer is a store specializing in high-quality technology products.
+            We are committed to providing our customers with the best shopping experience.</p>
+        </div>
+        <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+          <h5 class="text-uppercase mb-4">Quick Links</h5>
+          <ul class="list-unstyled text-center">
+            <li class="mb-2"><a href="index.html" class="text-muted text-decoration-none">Home</a></li>
+            <li class="mb-2"><a href="products.html" class="text-muted text-decoration-none">Products</a></li>
+            <li class="mb-2"><a href="contact.html" class="text-muted text-decoration-none">Contact</a></li>
+            <li class="mb-2"><a href="checkout.html" class="text-muted text-decoration-none">Cart</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+          <h5 class="text-uppercase mb-4">Contact Us</h5>
+          <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-2"></i>06 Tran Thanh Trung, Thanh Khe, DaNang
+          </p>
+          <p class="text-muted mb-2"><i class="fas fa-phone me-2"></i>+84 374145631</p>
+          <p class="text-muted mb-2"><i class="fas fa-envelope me-2"></i>pvhoang1701@gmail.com</p>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12 text-center">
+          <p class="text-muted mb-0">&copy; 2024 Hoang Computer. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+  <script src="./js/vn-province-district.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Load provinces
+      $('#selectProvince').select2({
+        placeholder: 'Select province/city',
+        data: VN_PROVINCES.map(p => ({ id: p.code, text: p.name }))
+      });
+      // Load districts when province changes
+      $('#selectProvince').on('change', function () {
+        const provinceCode = $(this).val();
+        const province = VN_PROVINCES.find(p => String(p.code) === String(provinceCode));
+        const districts = province ? province.districts : [];
+        $('#selectDistrict').empty().select2({
+          placeholder: 'Select district',
+          data: districts.map(d => ({ id: d.code, text: d.name }))
+        });
+      });
+      // Init empty district
+      $('#selectDistrict').select2({ placeholder: 'Select district' });
+      // Form submit
+      $('#customerInfoForm').on('submit', function (e) {
+        e.preventDefault();
+        $('#confirmationMessage').removeClass('d-none').html('<i class="fas fa-check-circle me-2"></i>Your order has been placed successfully! Thank you for shopping with us.');
+        $('html, body').animate({ scrollTop: 0 }, 'slow');
+        localStorage.removeItem('cart');
+        $('#cartBadge').text(0);
+      });
+
+      // Render cart items table & order summary
+      function renderCartTableAndSummary() {
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        let html = '';
+        let subtotal = 0;
+        const shipping = cart.length > 0 ? 30000 : 0;
+        cart.forEach(item => {
+          const price = typeof item.price === 'string' ? parseInt(item.price.replace(/[^\d]/g, '')) : item.price;
+          const itemTotal = item.quantity * (price || 0);
+          subtotal += itemTotal;
+          html += `<tr>
+            <td><img src="${item.image || ''}" alt="${item.name}" style="width:60px;height:60px;object-fit:cover;border-radius:8px;"></td>
+            <td>${item.name}</td>
+            <td>${(price || 0).toLocaleString()} ₫</td>
+            <td>${item.quantity}</td>
+            <td class="fw-bold text-danger">${itemTotal.toLocaleString()} ₫</td>
+          </tr>`;
+        });
+        const tax = Math.round(subtotal * 0.1);
+        const total = subtotal + shipping + tax;
+        $('#cartItemsTable').html(html);
+        $('#grandTotal').text(total.toLocaleString() + ' ₫');
+        $('#orderSubtotal').text(subtotal.toLocaleString() + ' ₫');
+        $('#orderShipping').text(shipping.toLocaleString() + ' ₫');
+        $('#orderTax').text(tax.toLocaleString() + ' ₫');
+        $('#orderTotal').text(total.toLocaleString() + ' ₫');
+
+        // Ẩn/hiện nếu cart rỗng
+        if (cart.length === 0) {
+          $('.cart-table, .order-summary-card, .card:has(#customerInfoForm), .card:has(#cartItemsTable)').hide();
+          $('.container').prepend('<div id="emptyCartMessage" class="empty-cart-message card shadow border-0 p-4 mb-4 text-center" style="background: #fff;"><i class="fas fa-shopping-cart fa-3x text-warning mb-3"></i><h3 class="fw-bold">Your cart is empty</h3><p class="text-muted">Please add products to your cart to continue shopping</p><a href="products.html" class="btn btn-continue-shopping btn-outline-warning rounded-pill px-4 fw-bold"><i class="fas fa-shopping-bag me-2"></i>Continue Shopping</a></div>');
+        }
+      }
+      renderCartTableAndSummary();
+    });
+
+    function renderCheckoutItemsInfo() {
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      const checkoutItemsDiv = document.getElementById('checkoutItems');
+      if (!checkoutItemsDiv) return;
+      if (cart.length === 0) {
+        checkoutItemsDiv.innerHTML = '<div class="text-center py-4">Your cart is empty.</div>';
+        return;
+      }
+      let html = '';
+      html += `<table class="table mb-0 align-middle">
+        <thead>
+          <tr>
+            <th class="text-center">Product</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>`;
+      cart.forEach((item, index) => {
+        const price = typeof item.price === 'string' ? parseInt(item.price.replace(/[^\d]/g, '')) : item.price;
+        const itemTotal = item.quantity * (price || 0);
+        html += `<tr>
+          <td>
+            <div class="d-flex align-items-center gap-3">
+              ${item.image ? `<img src="${item.image}" alt="${item.name}" class="product-image-checkout flex-shrink-0" style="width:60px;height:60px;object-fit:cover;border-radius:8px;">` : ''}
+              <div>
+                <div class="fw-bold" style="font-size:1.13rem;">${item.name}</div>
+                ${item.category ? `<div class="text-muted small mb-1">${item.category}</div>` : ''}
+                <div class="product-price text-primary small">${(price || 0).toLocaleString()} ₫</div>
+              </div>
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="quantity-controls justify-content-center">
+              <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantityInfo(${index}, -1)">-</button>
+              <span class="quantity-display">${item.quantity}</span>
+              <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantityInfo(${index}, 1)">+</button>
+            </div>
+          </td>
+          <td class="text-center align-middle">
+            <span class="fw-bold text-danger" style="font-size:1.15rem;">${itemTotal.toLocaleString()} ₫</span>
+          </td>
+          <td class="text-center">
+            <button class="btn btn-sm btn-outline-danger" onclick="removeFromCartInfo(${index})">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>`;
+      });
+      html += '</tbody></table>';
+      checkoutItemsDiv.innerHTML = html;
+    }
+    function updateQuantityInfo(index, change) {
+      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      if (cart[index]) {
+        cart[index].quantity += change;
+        if (cart[index].quantity <= 0) {
+          cart.splice(index, 1);
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCheckoutItemsInfo();
+        renderCartTableAndSummary();
+        updateCartBadgeInfo();
+      }
+    }
+    function removeFromCartInfo(index) {
+      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCheckoutItemsInfo();
+      renderCartTableAndSummary();
+      updateCartBadgeInfo();
+    }
+    function updateCartBadgeInfo() {
+      const cartBadge = document.getElementById('cartBadge');
+      if (cartBadge) {
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartBadge.textContent = totalItems;
+      }
+    }
+    // Gọi khi load trang
+    renderCheckoutItemsInfo();
+  </script>
+</body>
+
+</html>

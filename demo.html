@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo - Hoang Computer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/checkout.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/logo.png" alt="Logo" class="navbar-logo me-2">
+        Hoang Computer
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="checkout.html">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-badge" id="cartBadge">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Demo Content -->
+  <div class="container" style="padding-top: 120px;">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center">
+        <h1 class="mb-4">Demo Hệ thống Thanh toán</h1>
+        <p class="lead mb-5">Test các chức năng của hệ thống giỏ hàng và thanh toán</p>
+
+        <!-- Test Products -->
+        <div class="row g-4 mb-5">
+          <div class="col-md-4">
+            <div class="card h-100">
+              <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&h=200&fit=crop"
+                class="card-img-top" alt="Laptop">
+              <div class="card-body">
+                <h5 class="card-title">Laptop Dell Inspiron</h5>
+                <p class="card-text text-primary fw-bold">15.990.000 ₫</p>
+                <button class="btn btn-primary btn-add-cart w-100"
+                  data-product='{"id":"demo1","name":"Laptop Dell Inspiron","price":15990000,"image":"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&h=200&fit=crop"}'>
+                  <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100">
+              <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=200&fit=crop"
+                class="card-img-top" alt="Mouse">
+              <div class="card-body">
+                <h5 class="card-title">Logitech G102 Mouse</h5>
+                <p class="card-text text-primary fw-bold">420.000 ₫</p>
+                <button class="btn btn-primary btn-add-cart w-100"
+                  data-product='{"id":"demo2","name":"Logitech G102 Mouse","price":420000,"image":"https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=200&fit=crop"}'>
+                  <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100">
+              <img src="https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=300&h=200&fit=crop"
+                class="card-img-top" alt="Keyboard">
+              <div class="card-body">
+                <h5 class="card-title">Mechanical Keyboard</h5>
+                <p class="card-text text-primary fw-bold">1.290.000 ₫</p>
+                <button class="btn btn-primary btn-add-cart w-100"
+                  data-product='{"id":"demo3","name":"Mechanical Keyboard","price":1290000,"image":"https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=300&h=200&fit=crop"}'>
+                  <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="row g-3">
+          <div class="col-md-4">
+            <a href="products.html" class="btn btn-outline-primary w-100">
+              <i class="fas fa-shopping-bag me-2"></i>Xem tất cả sản phẩm
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="checkout.html" class="btn btn-success w-100">
+              <i class="fas fa-shopping-cart me-2"></i>Đi đến thanh toán
+            </a>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-warning w-100" onclick="clearCart()">
+              <i class="fas fa-trash me-2"></i>Xóa giỏ hàng
+            </button>
+          </div>
+        </div>
+
+        <!-- Cart Info -->
+        <div class="mt-5">
+          <h4>Thông tin giỏ hàng hiện tại:</h4>
+          <div id="cartInfo" class="alert alert-info">
+            Giỏ hàng đang trống
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="./js/cart.js"></script>
+  <script>
+    // Update cart info
+    function updateCartInfo() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartInfo = document.getElementById('cartInfo');
+
+      if (cart.length === 0) {
+        cartInfo.innerHTML = 'Giỏ hàng đang trống';
+        cartInfo.className = 'alert alert-info';
+      } else {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const totalPrice = cart.reduce((sum, item) => sum + (item.quantity * (item.price || 0)), 0);
+
+        cartInfo.innerHTML = `
+          <strong>${totalItems} sản phẩm</strong> - 
+          Tổng tiền: <strong>${totalPrice.toLocaleString()} ₫</strong>
+          <br>
+          <small>${cart.map(item => `${item.name} (x${item.quantity})`).join(', ')}</small>
+        `;
+        cartInfo.className = 'alert alert-success';
+      }
+    }
+
+    // Clear cart
+    function clearCart() {
+      localStorage.removeItem('cart');
+      updateCartBadge();
+      updateCartInfo();
+      alert('Đã xóa giỏ hàng!');
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function () {
+      updateCartBadge();
+      updateCartInfo();
+
+      // Update cart info when cart changes
+      window.addEventListener('storage', function (e) {
+        if (e.key === 'cart') {
+          updateCartBadge();
+          updateCartInfo();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

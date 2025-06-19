@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Men's Style Hub - Profile</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Men's Style Hub</a>
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="images/logo.png" alt="Logo" class="navbar-logo me-2">
+                Hoang Computer
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,8 +33,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-badge" id="cartBadge">0</span></a>
+                    <li class="nav-item position-relative">
+                        <a class="nav-link" href="checkout.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-badge" id="cartBadge">0</span>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login.html">Login</a>
@@ -40,7 +50,7 @@
         </div>
     </nav>
     <!-- Profile Page -->
-        <!-- Edit Profile Page -->
+    <!-- Edit Profile Page -->
     <div id="profile-edit" class="page-content">
         <div class="container" style="padding-top: 100px;">
             <div class="row justify-content-center">
@@ -49,9 +59,10 @@
                         <div class="card-body p-4">
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <h2>Edit Profile</h2>
-                                <a href="#" onclick="showPage('profile')" class="btn btn-outline-secondary">Back to Profile</a>
+                                <a href="#" onclick="showPage('profile')" class="btn btn-outline-secondary">Back to
+                                    Profile</a>
                             </div>
-                            
+
                             <form id="editProfileForm" class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
@@ -109,7 +120,8 @@
         <div class="footer-container">
             <div class="footer-col">
                 <h4>About Us</h4>
-                <p>Men's Style Hub is your go-to destination for premium men's fashion. We offer a curated selection of clothing, accessories, and footwear to elevate your style.</p>
+                <p>Men's Style Hub is your go-to destination for premium men's fashion. We offer a curated selection of
+                    clothing, accessories, and footwear to elevate your style.</p>
             </div>
             <div class="footer-col">
                 <h4>Quick Links</h4>
@@ -117,7 +129,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="products.html">Products</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="checkout.html">Cart</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -131,6 +143,8 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./js/cart.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

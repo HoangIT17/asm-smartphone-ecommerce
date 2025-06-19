@@ -1,168 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Men's Style Hub - Contact</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Men's Style Hub</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="products.html">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> <span
-                                class="cart-badge" id="cartBadge">0</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Account
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="login.html">Login</a></li>
-                            <li><a class="dropdown-item" href="register.html">Register</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Contact Page -->
-    <div id="contact" class="page-content">
-        <div class="container" style="padding-top: 100px;">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="section-title text-start">
-                        <h2>Contact Us</h2>
-                        <p class="lead">We'd love to hear from you</p>
-                    </div>
-
-                    <form id="contactForm" class="needs-validation" novalidate>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" required>
-                            <div class="invalid-feedback">
-                                Please enter your name.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" required>
-                            <div class="invalid-feedback">
-                                Please enter a valid email address.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" class="form-control" id="subject" required>
-                            <div class="invalid-feedback">
-                                Please enter a subject.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="5" required></textarea>
-                            <div class="invalid-feedback">
-                                Please enter your message.
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Our Information</h3>
-                            <div class="contact-info mt-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-map-marker-alt me-3 fa-lg"></i>
-                                    <p class="mb-0">123 Fashion Street, Style District, New York, NY 10001</p>
-                                </div>
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-phone-alt me-3 fa-lg"></i>
-                                    <p class="mb-0">+1 (555) 123-4567</p>
-                                </div>
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-envelope me-3 fa-lg"></i>
-                                    <p class="mb-0">info@mensstylehub.com</p>
-                                </div>
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-clock me-3 fa-lg"></i>
-                                    <p class="mb-0">Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="social-media mt-4">
-                                <h5>Follow Us</h5>
-                                <div class="d-flex mt-3">
-                                    <a href="#" class="me-3 text-dark"><i class="fab fa-facebook-f fa-2x"></i></a>
-                                    <a href="#" class="me-3 text-dark"><i class="fab fa-twitter fa-2x"></i></a>
-                                    <a href="#" class="me-3 text-dark"><i class="fab fa-instagram fa-2x"></i></a>
-                                    <a href="#" class="me-3 text-dark"><i class="fab fa-pinterest-p fa-2x"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="images/logo.png" alt="Logo" class="navbar-logo me-2">
+      Hoang Computer
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="products.html">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+        <li class="nav-item position-relative">
+          <a class="nav-link" href="checkout.html">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login.html">Login</a>
+        </li>
+      </ul>
     </div>
-
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>About Us</h4>
-                <p>Men's Style Hub is your go-to destination for premium men's fashion. We offer a curated selection of
-                    clothing, accessories, and footwear to elevate your style.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact Us</h4>
-                <p>123 Fashion Street, Style District, New York, NY 10001</p>
-                <p>+1 (555) 123-4567</p>
-                <p>info@mensstylehub.com</p>
-            </div>
-        </div>
-        <div class="footer-bottom">© 2025 Men's Style Hub. All rights reserved.</div>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
-
-</html>
+  </div>
+</nav>

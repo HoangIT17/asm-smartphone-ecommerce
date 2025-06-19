@@ -49,7 +49,7 @@ body {
 }
 
 .navbar-brand {
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1.8rem;
     color: var(--primary-color) !important;
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
