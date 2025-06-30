@@ -1,36 +1,948 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="vi">
 
-<nav class="navbar navbar-expand-lg fixed-top">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="index.html">
-      <img src="images/logo.png" alt="Logo" class="navbar-logo me-2">
-      Hoang Computer
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="products.html">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
-        </li>
-        <li class="nav-item position-relative">
-          <a class="nav-link" href="checkout.html">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-badge" id="cartBadge">0</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login.html">Login</a>
-        </li>
-      </ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Hoang Computer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/cart.css">
+  <style>
+    :root {
+      --primary-color: #6366f1;
+      --secondary-color: #8b5cf6;
+      --accent-color: #06b6d4;
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+      --danger-color: #ef4444;
+      --dark-color: #1f2937;
+      --light-color: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: var(--gray-800);
+      padding-top: 80px;
+    }
+
+    /* Enhanced Navbar */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 10px 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-logo {
+      height: 40px;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      position: relative;
+      transition: all 0.3s ease;
+      padding: 8px 15px !important;
+      border-radius: 8px;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color) !important;
+      background: rgba(99, 102, 241, 0.1);
+    }
+
+    .nav-link.active {
+      color: var(--primary-color) !important;
+      font-weight: 600;
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 3px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 2px;
+    }
+
+    /* Enhanced Hero Section */
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0;
+      color: white;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="white" stop-opacity="0.1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+      animation: float 20s ease-in-out infinite;
+      opacity: 0.6;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Quick Contact Buttons */
+    .quick-contact-section {
+      background: var(--gray-100);
+      padding: 40px 0;
+    }
+
+    .quick-contact-btn {
+      border-radius: 50px;
+      padding: 15px 25px;
+      margin: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+    }
+
+    .quick-contact-btn i {
+      margin-right: 8px;
+      font-size: 1.1rem;
+    }
+
+    /* Contact Methods */
+    .contact-method {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .contact-method:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      font-size: 1.2rem;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+
+    /* Form Styling */
+    .contact-form-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .form-control,
+    .form-select {
+      border: 2px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.15);
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 8px;
+    }
+
+    /* Button Styles */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border: none;
+      border-radius: 50px;
+      padding: 15px 30px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+    }
+
+    /* Map Container */
+    .map-container {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      min-height: 300px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 2px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .hero-section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+
+      .hero-section {
+        padding: 60px 0;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
+
+      .quick-contact-btn {
+        min-width: 160px;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Animation Classes */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .animate-on-scroll.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Loading Spinner */
+    .spinner-border {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-width: 0.2em;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1100;
+    }
+
+    /* Policy Cards */
+    .policy-card {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--primary-color);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .policy-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    /* FAQ Styling */
+    .faq-item {
+      border: none;
+      border-radius: 16px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .accordion-button {
+      border-radius: 16px !important;
+      font-weight: 600;
+      padding: 18px 25px;
+      background: var(--light-color);
+    }
+
+    .accordion-button:not(.collapsed) {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+    }
+
+    .accordion-body {
+      padding: 20px 25px;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--dark-color) 0%, #374151 100%);
+      position: relative;
+      padding: 60px 0 30px;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    }
+
+    .footer-links a {
+      color: var(--gray-300);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .social-icons a {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    .contact-form-card,
+    .contact-method {
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/logo.png" alt="Logo" class="navbar-logo me-2">
+        Hoang Computer
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item position-relative">
+            <a class="nav-link" href="checkout.html">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-badge" id="cartBadge">0</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container text-center hero-content">
+      <h1 class="display-4 fw-bold mb-4 animate-on-scroll">Contact Us</h1>
+      <p class="lead fs-3 mb-0 animate-on-scroll">We are always ready to support you 24/7</p>
+    </div>
+  </section>
+
+  <!-- Quick Contact Buttons -->
+  <section class="quick-contact-section">
+    <div class="container text-center">
+      <h4 class="mb-4">Quick Contact</h4>
+      <div class="d-flex flex-wrap justify-content-center">
+        <a href="tel:+84374145631" class="btn btn-success quick-contact-btn">
+          <i class="fas fa-phone"></i> Call Now
+        </a>
+        <a href="https://zalo.me/0374145631" target="_blank" class="btn btn-primary quick-contact-btn">
+          <i class="fab fa-zalo"></i> Chat Zalo
+        </a>
+        <a href="https://m.me/hoangcomputer" target="_blank" class="btn btn-info quick-contact-btn">
+          <i class="fab fa-facebook-messenger"></i> Messenger
+        </a>
+        <a href="mailto:pvhoang1701@gmail.com" class="btn btn-warning quick-contact-btn">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="container py-5">
+    <div class="row g-4 align-items-stretch">
+      <!-- Contact Information -->
+      <div class="col-12 col-lg-4 h-100">
+        <h3 class="section-title text-center text-lg-start">Contact Information</h3>
+
+        <!-- Store Info -->
+        <div class="contact-method">
+          <div class="d-flex">
+            <div class="contact-icon">
+              <i class="fas fa-store"></i>
+            </div>
+            <div>
+              <h5 class="mb-2">Main Store</h5>
+              <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>06 Tran Thanh Trung, Thanh Khe, Da Nang</p>
+              <p class="text-muted mb-0"><i class="fas fa-clock me-2"></i>Monday - Sunday: 8:00 - 21:00</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="contact-method">
+          <div class="d-flex">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div>
+              <h5 class="mb-2">Hotline</h5>
+              <p class="mb-1"><strong>Sales:</strong> <a href="tel:+84374145631" class="text-decoration-none">0374 145
+                  631</a></p>
+              <p class="mb-1"><strong>Warranty:</strong> <a href="tel:+84374145632" class="text-decoration-none">0374
+                  145 632</a></p>
+              <p class="mb-0"><strong>Complaints:</strong> <a href="tel:+84374145633" class="text-decoration-none">0374
+                  145 633</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-method">
+          <div class="d-flex">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h5 class="mb-2">Email</h5>
+              <p class="mb-1"><strong>Sales:</strong> <a href="mailto:sales@hoangcomputer.vn"
+                  class="text-decoration-none">sales@hoangcomputer.vn</a></p>
+              <p class="mb-1"><strong>Support:</strong> <a href="mailto:support@hoangcomputer.vn"
+                  class="text-decoration-none">support@hoangcomputer.vn</a></p>
+              <p class="mb-0"><strong>Hotline:</strong> <a href="mailto:pvhoang1701@gmail.com"
+                  class="text-decoration-none">pvhoang1701@gmail.com</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="contact-method">
+          <div class="d-flex">
+            <div class="contact-icon">
+              <i class="fas fa-share-alt"></i>
+            </div>
+            <div>
+              <h5 class="mb-3">Social Media</h5>
+              <div class="d-flex gap-3">
+                <a href="#" class="text-primary" style="font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-info" style="font-size: 1.5rem;"><i class="fab fa-zalo"></i></a>
+                <a href="#" class="text-danger" style="font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-success" style="font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-12 col-lg-8 h-100 d-flex flex-column">
+        <h3 class="section-title text-center text-lg-start">Send us a message</h3>
+        <div class="contact-form-card flex-grow-1 d-flex flex-column">
+          <div class="card-body p-4 p-lg-5 flex-grow-1 d-flex flex-column">
+            <form id="contactForm" class="d-flex flex-column h-100">
+              <div class="row g-3 flex-grow-1">
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="phone" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="contactType" class="form-label">Contact Purpose</label>
+                  <select class="form-select" id="contactType">
+                    <option value="">Select purpose...</option>
+                    <option value="sales">Sales Consultation</option>
+                    <option value="warranty">Product Warranty</option>
+                    <option value="complaint">Complaint</option>
+                    <option value="return">Product Return</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="subject" class="form-label">Subject</label>
+                  <input type="text" class="form-control" id="subject" placeholder="Enter subject">
+                </div>
+                <div class="col-12">
+                  <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+                  <textarea class="form-control" id="message" rows="5" placeholder="Enter detailed message..."
+                    required></textarea>
+                </div>
+              </div>
+              <div class="col-12 mt-3 mt-auto">
+                <button type="submit" class="btn btn-primary btn-lg w-100" id="submitBtn">
+                  <i class="fas fa-paper-plane me-2"></i>Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
+
+  <!-- Map Section -->
+  <section class="py-5 bg-light">
+    <div class="container-fluid">
+      <h3 class="section-title text-center">Store Location</h3>
+      <div class="row g-4 justify-content-center">
+        <div class="col-12 col-lg-8">
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.0109!2d108.2022133!3d16.0471658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219b4239d8db1%3A0x8b5f3b9f0b0b0b0b!2zNiBUcuG6p24gVGjDoG5oIFRydW5nLCBUaGFuaCBLaMOqLCDEkMOgIE7hurVuZw!5e0!3m2!1svi!2svn!4v1000000000000!5m2!1svi!2svn"
+              allowfullscreen="" loading="lazy">
+            </iframe>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="contact-method h-100">
+            <h5 class="mb-4">
+              <i class="fas fa-map-marker-alt text-danger me-2"></i>
+              How to get to the store
+            </h5>
+            <div class="mb-4">
+              <h6><i class="fas fa-bus text-primary me-2"></i>Bus</h6>
+              <p class="text-muted small">Route 01, 02: Stop at Thanh Khe station (300m)</p>
+            </div>
+            <div class="mb-4">
+              <h6><i class="fas fa-motorcycle text-success me-2"></i>Motorbike</h6>
+              <p class="text-muted small">Free parking for customers</p>
+            </div>
+            <div class="mb-4">
+              <h6><i class="fas fa-car text-warning me-2"></i>Car</h6>
+              <p class="text-muted small">Car parking in front of the store</p>
+            </div>
+            <div class="text-center mt-4">
+              <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.0109!2d108.2022133!3d16.0471658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219b4239d8db1%3A0x8b5f3b9f0b0b0b0b!2zNiBUcuG6p24gVGjDoG5oIFRydW5nLCBUaGFuaCBLaMOqLCDEkMOgIE7hurVuZw!5e0!3m2!1svi!2svn!4v1000000000000!5m2!1svi!2svn"
+                target="_blank" class="btn btn-outline-primary">
+                <i class="fas fa-route me-2"></i>Get Directions
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Policies Section -->
+  <section class="py-5">
+    <div class="container-fluid">
+      <h3 class="section-title text-center">Customer Support Policies</h3>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-6 col-lg-3">
+          <div class="policy-card">
+            <h5><i class="fas fa-shield-alt text-primary me-2"></i>Warranty Policy</h5>
+            <ul class="mb-0 ps-3">
+              <li>Official warranty 12-24 months</li>
+              <li>Exchange within the first 7 days</li>
+              <li>On-site warranty support</li>
+              <li>Warranty hotline: 0374 145 632</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="policy-card">
+            <h5><i class="fas fa-undo text-success me-2"></i>Return Policy</h5>
+            <ul class="mb-0 ps-3">
+              <li>Return within 15 days</li>
+              <li>Product must be sealed, in box</li>
+              <li>100% refund if manufacturer defect</li>
+              <li>Free shipping for returns</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="policy-card">
+            <h5><i class="fas fa-shipping-fast text-info me-2"></i>Shipping Policy</h5>
+            <ul class="mb-0 ps-3">
+              <li>Nationwide delivery</li>
+              <li>Free shipping in Da Nang city</li>
+              <li>Delivery within 1-2 days</li>
+              <li>Check goods before receiving</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="policy-card">
+            <h5><i class="fas fa-credit-card text-warning me-2"></i>Payment Methods</h5>
+            <ul class="mb-0 ps-3">
+              <li>Cash on delivery (COD)</li>
+              <li>Bank transfer</li>
+              <li>E-wallet: Momo, ZaloPay</li>
+              <li>Credit/debit card</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-5 bg-light">
+    <div class="container-fluid">
+      <h3 class="section-title text-center">Frequently Asked Questions</h3>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+              Can I order online and pick up at the store?
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, you can order online and choose to pick up at the store. We will prepare the product and notify you
+              when you can come to pick it up. The holding time is 3 days from the order date.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+              How to check product warranty?
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              You can check the warranty status by:
+              <ul>
+                <li>Call the warranty hotline 0374 145 632</li>
+                <li>Bring the product and invoice to the store</li>
+                <li>Check online with the product code on the website</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+              Is installment payment supported?
+            </button>
+          </h2>
+          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, we support installment payment through reputable financial companies with preferential interest
+              rates. Installment conditions:
+              <ul>
+                <li>Valid ID card/Citizen ID</li>
+                <li>Stable income</li>
+                <li>Simple procedure, quick approval in 15-30 minutes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+              Is technical consultation available for products?
+            </button>
+          </h2>
+          <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, our professional technicians will:
+              <ul>
+                <li>Consult in detail about product configuration</li>
+                <li>Guide on usage and maintenance</li>
+                <li>Free installation support at the store</li>
+                <li>Remote consultation via phone/Zalo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-5">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+          <h5 class="text-uppercase mb-4">About Us</h5>
+          <p class="text-muted text-center">Hoang Computer is a store specializing in high-quality technology products.
+            We are committed to providing our customers with the best shopping experience.</p>
+        </div>
+        <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+          <h5 class="text-uppercase mb-4">Quick Links</h5>
+          <ul class="list-unstyled text-center">
+            <li class="mb-2"><a href="index.html" class="text-muted text-decoration-none">Home</a></li>
+            <li class="mb-2"><a href="products.html" class="text-muted text-decoration-none">Products</a></li>
+            <li class="mb-2"><a href="#contact" class="text-muted text-decoration-none">Contact</a></li>
+            <li class="mb-2"><a href="checkout.html" class="text-muted text-decoration-none">Cart</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
+          <h5 class="text-uppercase mb-4">Contact Us</h5>
+          <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-2"></i>06 Tran Thanh Trung, Thanh Khe, Da Nang
+          </p>
+          <p class="text-muted mb-2"><i class="fas fa-phone me-2"></i>+84 374145631</p>
+          <p class="text-muted mb-2"><i class="fas fa-envelope me-2"></i>pvhoang1701@gmail.com</p>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12 text-center">
+          <p class="text-muted mb-0">&copy; 2024 Hoang Computer. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast-container">
+    <div class="toast align-items-center text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true"
+      id="successToast">
+      <div class="d-flex">
+        <div class="toast-body">
+          <i class="fas fa-check-circle me-2"></i>
+          <span id="toastMessage">Your message has been sent successfully!</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="./js/cart.js"></script>
+
+  <script>
+    // Navbar scroll effect
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 50) {
+        $('.navbar').addClass('scrolled');
+        $('.navbar-logo').css('height', '30px');
+      } else {
+        $('.navbar').removeClass('scrolled');
+        $('.navbar-logo').css('height', '40px');
+      }
+    });
+
+    // Animation on scroll
+    function animateOnScroll() {
+      $('.animate-on-scroll').each(function () {
+        var position = $(this).offset().top;
+        var scroll = $(window).scrollTop();
+        var windowHeight = $(window).height();
+
+        if (scroll + windowHeight > position + 100) {
+          $(this).addClass('animate');
+        }
+      });
+    }
+
+    $(window).scroll(animateOnScroll);
+    $(document).ready(animateOnScroll);
+
+    // Form submission
+    $('#contactForm').submit(function (e) {
+      e.preventDefault();
+
+      // Validate form
+      const name = $('#name').val();
+      const phone = $('#phone').val();
+      const email = $('#email').val();
+      const message = $('#message').val();
+
+      if (!name || !phone || !email || !message) {
+        showToast('Please fill in all required information!', 'danger');
+        return;
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showToast('Invalid email!', 'danger');
+        return;
+      }
+
+      // Phone validation (Vietnamese phone number)
+      const phoneRegex = /^(\+84|0)[0-9]{9,10}$/;
+      if (!phoneRegex.test(phone)) {
+        showToast('Invalid phone number!', 'danger');
+        return;
+      }
+
+      // Simulate form submission
+      const submitBtn = $('#submitBtn');
+      const originalText = submitBtn.html();
+
+      submitBtn.html('<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Sending...');
+      submitBtn.prop('disabled', true);
+
+      // Simulate API call
+      setTimeout(() => {
+        submitBtn.html(originalText);
+        submitBtn.prop('disabled', false);
+
+        // Show success message
+        showToast('Thank you for contacting us! We will respond as soon as possible.', 'success');
+
+        // Reset form
+        $('#contactForm')[0].reset();
+      }, 2000);
+    });
+
+    // Show toast notification
+    function showToast(message, type) {
+      const toast = $('#successToast');
+      const toastMessage = $('#toastMessage');
+
+      toast.removeClass('bg-success bg-danger');
+      toast.addClass(type === 'success' ? 'bg-success' : 'bg-danger');
+      toastMessage.text(message);
+
+      const bsToast = new bootstrap.Toast(toast[0]);
+      bsToast.show();
+    }
+
+    // Initialize cart badge
+    function updateCartBadge() {
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      $('#cartBadge').text(cartItems.length);
+    }
+
+    $(document).ready(function () {
+      updateCartBadge();
+    });
+  </script>
+</body>
+
+</html>
