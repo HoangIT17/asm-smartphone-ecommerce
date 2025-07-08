@@ -1,7 +1,11 @@
 /* Base styles and variables */
 :root {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
+  --primary-color: #2c3e50;
+  --secondary-color: #1976d2;
+  --accent-color: #00bcd4;
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;
+  --bg-light: #f8f9fa;
   --success-color: #28a745;
   --danger-color: #dc3545;
   --warning-color: #ffc107;
@@ -9,6 +13,10 @@
   --light-color: #f8f9fa;
   --dark-color: #343a40;
   --white-color: #fff;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --gradient-primary: linear-gradient(135deg, #1976d2 0%, #00bcd4 100%);
+  --gradient-secondary: linear-gradient(135deg, #00bcd4 0%, #1976d2 100%);
+  --gradient-tertiary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
 /* Reset and base styles */
@@ -19,9 +27,10 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: var(--text-dark);
+  overflow-x: hidden;
 }
 
 /* Responsive container */

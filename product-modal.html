@@ -1,0 +1,156 @@
+<div class="modal fade" id="productDetailModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title" id="productModalTitle"></h5>
+        <button type="button" class="btn-close custom-fa-close" data-bs-dismiss="modal" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body row g-4">
+        <!-- Left column: Product info only -->
+        <div class="col-md-6 product-info-col">
+          <!-- Product Image -->
+          <div class="position-relative product-image-container mb-3">
+            <img id="productModalImage" src="" alt="" class="img-fluid rounded w-100" style="object-fit: contain;">
+            <div class="position-absolute top-0 start-0 m-2">
+              <span class="badge bg-danger" id="productModalDiscount"></span>
+            </div>
+          </div>
+          <div class="d-flex align-items-center mb-2">
+            <div class="text-warning me-2">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <span class="text-muted small">(4.5/5) - 128 reviews</span>
+          </div>
+          <h4 id="productModalName" class="mb-2"></h4>
+          <div class="mb-3">
+            <span class="text-danger fs-4 fw-bold" id="productModalPrice"></span>
+            <span class="text-muted text-decoration-line-through ms-2" id="productModalOldPrice"></span>
+          </div>
+          <div class="mb-3">
+            <span class="badge bg-success me-2" id="productModalStock">In Stock</span>
+            <span class="text-muted small">SKU: <span id="productModalSku">PROD001</span></span>
+          </div>
+          <div id="productModalDesc" class="mb-3 text-muted"></div>
+          <!-- Size Selection -->
+          <div class="mb-3">
+            <label class="form-label fw-bold">Size:</label>
+            <div class="d-flex flex-wrap gap-2" id="productModalSizes">
+              <button class="btn btn-outline-secondary size-option" data-size="S">S</button>
+              <button class="btn btn-outline-secondary size-option" data-size="M">M</button>
+              <button class="btn btn-outline-secondary size-option" data-size="L">L</button>
+              <button class="btn btn-outline-secondary size-option" data-size="XL">XL</button>
+              <button class="btn btn-outline-secondary size-option" data-size="XXL">XXL</button>
+            </div>
+            <small class="text-muted">Selected: <span id="selectedSize">M</span></small>
+          </div>
+          <!-- Color Selection -->
+          <div class="mb-3">
+            <label class="form-label fw-bold">Color:</label>
+            <div class="d-flex flex-wrap gap-2" id="productModalColors">
+              <div class="color-option" data-color="blue"
+                style="width: 30px; height: 30px; background-color: #007bff; border: 2px solid #007bff; border-radius: 50%; cursor: pointer;"
+                title="Blue"></div>
+              <div class="color-option" data-color="red"
+                style="width: 30px; height: 30px; background-color: #dc3545; border: 2px solid #dc3545; border-radius: 50%; cursor: pointer;"
+                title="Red"></div>
+              <div class="color-option" data-color="green"
+                style="width: 30px; height: 30px; background-color: #28a745; border: 2px solid #28a745; border-radius: 50%; cursor: pointer;"
+                title="Green"></div>
+              <div class="color-option" data-color="yellow"
+                style="width: 30px; height: 30px; background-color: #ffc107; border: 2px solid #ffc107; border-radius: 50%; cursor: pointer;"
+                title="Yellow"></div>
+              <div class="color-option" data-color="purple"
+                style="width: 30px; height: 30px; background-color: #6f42c1; border: 2px solid #6f42c1; border-radius: 50%; cursor: pointer;"
+                title="Purple"></div>
+              <div class="color-option" data-color="orange"
+                style="width: 30px; height: 30px; background-color: #fd7e14; border: 2px solid #fd7e14; border-radius: 50%; cursor: pointer;"
+                title="Orange"></div>
+              <div class="color-option" data-color="pink"
+                style="width: 30px; height: 30px; background-color: #e83e8c; border: 2px solid #e83e8c; border-radius: 50%; cursor: pointer;"
+                title="Pink"></div>
+              <div class="color-option" data-color="black"
+                style="width: 30px; height: 30px; background-color: #343a40; border: 2px solid #343a40; border-radius: 50%; cursor: pointer;"
+                title="Black"></div>
+            </div>
+            <small class="text-muted">Selected: <span id="selectedColor">Blue</span></small>
+          </div>
+          <div class="input-group mb-3" style="max-width: 150px;">
+            <span class="input-group-text">Quantity</span>
+            <input type="number" class="form-control" id="productModalQty" value="1" min="1">
+          </div>
+        </div>
+        <!-- Right column: Shipping, Service, Action Buttons -->
+        <div class="col-md-6 d-flex flex-column align-items-stretch justify-content-start">
+          <!-- Shipping Information (duplicate or summary) -->
+          <div class="card mb-3">
+            <div class="card-body p-3">
+              <div class="d-flex align-items-center mb-2">
+                <i class="fas fa-shipping-fast text-primary me-2"></i>
+                <span class="fw-bold">Shipping</span>
+              </div>
+              <div class="mb-2">
+                <small class="text-success">Receive from July 8 - July 9</small>
+              </div>
+              <div class="mb-2">
+                <small class="text-primary">Shipping fee: ₫0</small>
+              </div>
+              <div class="mb-2">
+                <small class="text-warning">Get ₫15,000 voucher if delivery is after the above time.</small>
+              </div>
+              <div class="mb-2">
+                <small class="text-info">Shop with confidence on Shopee</small>
+              </div>
+            </div>
+          </div>
+          <!-- Service Information (duplicate or summary) -->
+          <div class="card mb-3">
+            <div class="card-body p-3">
+              <div class="d-flex align-items-center mb-2">
+                <i class="fas fa-shield-alt text-success me-2"></i>
+                <span class="fw-bold">Service</span>
+              </div>
+              <div class="mb-1">
+                <small class="text-success">Free return within 15 days</small>
+              </div>
+              <div>
+                <small class="text-info">Fashion Insurance</small>
+              </div>
+            </div>
+          </div>
+          <!-- Promotion Card -->
+          <div class="card mb-3">
+            <div class="card-body p-3">
+              <div class="d-flex align-items-center mb-2">
+                <i class="fas fa-gift text-warning me-2"></i>
+                <span class="fw-bold">Promotion</span>
+              </div>
+              <div class="mb-1 d-flex align-items-center">
+                <i class="fas fa-bolt text-warning me-2"></i>
+                <small class="text-danger">Ưu đãi hôm nay: Giảm 10% cho đơn từ 500K</small>
+              </div>
+              <div class="d-flex align-items-center">
+                <i class="fas fa-headset text-primary me-2"></i>
+                <small class="text-primary">Hỗ trợ khách hàng 24/7</small>
+              </div>
+            </div>
+          </div>
+          <!-- Action Buttons -->
+          <div class="d-grid gap-2 mt-auto">
+            <button class="btn btn-danger btn-lg" id="productModalBuyNow">
+              <i class="fas fa-bolt me-2"></i>Buy Now
+            </button>
+            <button class="btn btn-primary btn-lg" id="productModalAddCart">
+              <i class="fas fa-cart-plus me-2"></i>Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

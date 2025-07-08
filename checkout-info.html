@@ -11,11 +11,11 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/checkout.css">
+  <link rel="stylesheet" href="./css/base.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body style="background: #f5f5fa; min-height: 100vh;">
-  <!-- Navigation/Header -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -45,17 +45,27 @@
           <li class="nav-item">
             <a class="nav-link" href="login.html">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="register.html">Register</a>
-          </li>
         </ul>
       </div>
     </div>
   </nav>
   <div class="container py-5" style="max-width: 900px; margin-top: 80px;">
-    <div class="d-flex align-items-center justify-content-center mb-4">
-      <i class="fas fa-user-check fa-2x text-info me-2"></i>
-      <h2 class="fw-bold mb-0" style="color: #ee4d2d; letter-spacing: 1px;">Customer Information & Payment</h2>
+    <div class="d-flex align-items-center justify-content-center mb-4" style="gap: 18px;">
+      <span class="d-inline-flex align-items-center justify-content-center rounded-circle shadow-sm"
+        style="background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); width: 60px; height: 60px;">
+        <i class="fas fa-user-check fa-2x" style="color: #00bcd4;"></i>
+      </span>
+      <h2 class="fw-bold mb-0" style="
+            color: #ee4d2d;
+            letter-spacing: 1px;
+            font-size: 2.2rem;
+            text-shadow: 0 2px 8px rgba(238,77,45,0.08);
+            background: linear-gradient(90deg, #ee4d2d 60%, #ff9800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          ">
+        Customer Information &amp; Payment
+      </h2>
     </div>
     <!-- Cart Items -->
     <div class="cart-table fade show card shadow-lg border-0 mb-4 rounded-4 overflow-hidden">
@@ -143,39 +153,7 @@
       </div>
     </div>
   </div>
-  <!-- Footer -->
-  <footer class="bg-dark text-white py-5">
-    <div class="container">
-      <div class="row justify-content-center text-center">
-        <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
-          <h5 class="text-uppercase mb-4">About Us</h5>
-          <p class="text-muted text-center">Hoang Computer is a store specializing in high-quality technology products.
-            We are committed to providing our customers with the best shopping experience.</p>
-        </div>
-        <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
-          <h5 class="text-uppercase mb-4">Quick Links</h5>
-          <ul class="list-unstyled text-center">
-            <li class="mb-2"><a href="index.html" class="text-muted text-decoration-none">Home</a></li>
-            <li class="mb-2"><a href="products.html" class="text-muted text-decoration-none">Products</a></li>
-            <li class="mb-2"><a href="contact.html" class="text-muted text-decoration-none">Contact</a></li>
-            <li class="mb-2"><a href="checkout.html" class="text-muted text-decoration-none">Cart</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
-          <h5 class="text-uppercase mb-4">Contact Us</h5>
-          <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-2"></i>06 Tran Thanh Trung, Thanh Khe, DaNang
-          </p>
-          <p class="text-muted mb-2"><i class="fas fa-phone me-2"></i>+84 374145631</p>
-          <p class="text-muted mb-2"><i class="fas fa-envelope me-2"></i>pvhoang1701@gmail.com</p>
-        </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-12 text-center">
-          <p class="text-muted mb-0">&copy; 2024 Hoang Computer. All rights reserved.</p>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <div id="footerContainer"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
   <script src="./js/vn-province-district.js"></script>
@@ -327,6 +305,20 @@
     }
     // Gọi khi load trang
     renderCheckoutItemsInfo();
+
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('footerContainer').innerHTML = html);
+
+    function updateCartDisplay() {
+      const cartBadge = document.getElementById('cartBadge');
+      if (cartBadge) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartBadge.textContent = totalItems;
+      }
+    }
+    updateCartDisplay();
   </script>
 </body>
 

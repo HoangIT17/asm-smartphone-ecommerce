@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopping Cart - Hoang Computer</title>
+  <link rel="stylesheet" href="./css/base.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -15,7 +16,6 @@
 </head>
 
 <body>
-  <!-- Navigation -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -36,7 +36,7 @@
           <li class="nav-item">
             <a class="nav-link" href="contact.html">Contact</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item position-relative">
             <a class="nav-link" href="checkout.html">
               <i class="fas fa-shopping-cart"></i>
               <span class="cart-badge" id="cartBadge">0</span>
@@ -203,47 +203,15 @@
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-5">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
-            <h5 class="text-uppercase mb-4">About Us</h5>
-            <p class="text-muted text-center">Hoang Computer is a store specializing in high-quality
-              technology
-              products. We are committed to providing our customers with the best shopping experience.</p>
-          </div>
-          <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
-            <h5 class="text-uppercase mb-4">Quick Links</h5>
-            <ul class="list-unstyled text-center">
-              <li class="mb-2"><a href="index.html" class="text-muted text-decoration-none">Home</a></li>
-              <li class="mb-2"><a href="products.html" class="text-muted text-decoration-none">Products</a>
-              </li>
-              <li class="mb-2"><a href="#contact" class="text-muted text-decoration-none">Contact</a></li>
-              <li class="mb-2"><a href="checkout.html" class="text-muted text-decoration-none">Cart</a></li>
-            </ul>
-          </div>
-          <div class="col-md-4 mb-4 d-flex flex-column align-items-center">
-            <h5 class="text-uppercase mb-4">Contact Us</h5>
-            <p class="text-muted mb-2"><i class="fas fa-map-marker-alt me-2"></i>06 Tran Thanh Trung, Thanh
-              Khe,
-              DaNang</p>
-            <p class="text-muted mb-2"><i class="fas fa-phone me-2"></i>+84 374145631</p>
-            <p class="text-muted mb-2"><i class="fas fa-envelope me-2"></i>pvhoang1701@gmail.com</p>
-          </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col-12 text-center">
-            <p class="text-muted mb-0">&copy; 2024 Hoang Computer. All rights reserved.</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./js/cart.js"></script>
+    <div id="footerContainer"></div>
     <script>
+      fetch('header.html')
+        .then(res => res.text())
+        .then(html => document.getElementById('headerContainer').innerHTML = html);
+      fetch('footer.html')
+        .then(res => res.text())
+        .then(html => document.getElementById('footerContainer').innerHTML = html);
+
       document.addEventListener('DOMContentLoaded', function () {
         updateCartBadge();
         renderCheckoutItems();
