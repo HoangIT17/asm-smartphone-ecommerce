@@ -483,3 +483,87 @@ function updateCartBadge() {
     }
   }
 } 
+
+fetch('footer.html')
+        .then(res => res.text())
+        .then(html => document.getElementById('footerContainer').innerHTML = html);
+
+      document.addEventListener('DOMContentLoaded', function () {
+        updateCartBadge();
+        renderCheckoutItems();
+        document.getElementById('checkoutForm').addEventListener('submit', function (e) {
+          e.preventDefault();
+          // Validate
+          const name = document.getElementById('customerName').value.trim();
+          const phone = document.getElementById('customerPhone').value.trim();
+          const email = document.getElementById('customerEmail').value.trim();
+          const address = document.getElementById('customerAddress').value.trim();
+          const payment = document.getElementById('paymentMethod').value;
+          if (!name || !phone || !email || !address || !payment) {
+            document.getElementById('checkoutMessage').innerHTML = '<div class="alert alert-danger">Vui lòng điền đầy đủ thông tin bắt buộc!</div>';
+            return;
+          }
+          // Xử lý đặt hàng thành công
+          localStorage.removeItem('cart');
+          updateCartBadge();
+          renderCheckoutItems();
+          document.getElementById('checkoutMessage').innerHTML = '<div class="alert alert-success">Đặt hàng thành công! Cảm ơn bạn đã mua hàng.</div>';
+          document.getElementById('checkoutForm').reset();
+        });
+      });
+
+      // Hiển thị sản phẩm trong giỏ hàng
+      function renderCheckoutItems() {
+        const cart = getCart();
+        const checkoutItemsDiv = document.getElementById('checkoutItems');
+        let html = '';
+        let subtotal = 0;
+        if (cart.length === 0) {
+          checkoutItemsDiv.innerHTML = '<div class="p-3">Your cart is empty.</div>';
+          document.getElementById('orderSubtotal').textContent = '0 ₫';
+          document.getElementById('orderTax').textContent = '0 ₫';
+          document.getElementById('orderTotal').textContent = '0 ₫';
+          document.getElementById('orderShipping').textContent = '0 ₫';
+          document.getElementById('checkoutForm').style.display = 'none';
+          return;
+        }
+        html += `<table class="table mb-0 align-middle">
+          <thead><tr>
+            <th></th>
+            <th>Sản phẩm</th>
+            <th>Đơn giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+          </tr></thead><tbody>`;
+        cart.forEach(item => {
+          let price = typeof item.price === 'string' ? Number(item.price.replace(/[^\d]/g, '')) : item.price;
+          subtotal += item.quantity * (price || 0);
+          html += `<tr>
+            <td>${item.image ? `<img src="${item.image}" alt="${item.name}" style="width:50px;height:50px;object-fit:cover;">` : ''}</td>
+            <td>
+              ${item.name}
+              ${item.color ? `<div class='text-muted small'>Màu: ${item.color}</div>` : ''}
+              ${item.size ? `<div class='text-muted small'>Size: ${item.size}</div>` : ''}
+            </td>
+            <td>${(price || 0).toLocaleString()} ₫</td>
+            <td>${item.quantity}</td>
+            <td>${(item.quantity * (price || 0)).toLocaleString()} ₫</td>
+          </tr>`;
+        });
+        html += '</tbody></table>';
+        checkoutItemsDiv.innerHTML = html;
+        // Tổng kết đơn hàng
+        const shipping = 30000;
+        const tax = Math.round(subtotal * 0.1);
+        const total = subtotal + shipping + tax;
+        document.getElementById('orderSubtotal').textContent = subtotal.toLocaleString() + ' ₫';
+        document.getElementById('orderShipping').textContent = shipping.toLocaleString() + ' ₫';
+        document.getElementById('orderTax').textContent = tax.toLocaleString() + ' ₫';
+        document.getElementById('orderTotal').textContent = total.toLocaleString() + ' ₫';
+        document.getElementById('checkoutForm').style.display = '';
+      }
+
+      // SỬA HÀM getCart để dùng localStorage
+      function getCart() {
+        return JSON.parse(localStorage.getItem('cart')) || [];
+      }

@@ -277,6 +277,74 @@
   }
 }
 
+@media (max-width: 576px) {
+  .modal-body .d-grid.mt-auto.w-100 {
+    margin-top: 18px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .modal-body .btn-lg {
+    border-radius: 12px !important;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .modal-body .d-grid.mt-auto.w-100>.btn {
+    margin-bottom: 10px;
+  }
+
+  .modal-body .d-grid.mt-auto.w-100>.btn:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-body .card {
+    margin-bottom: 18px !important;
+    border-radius: 14px !important;
+    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.12);
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    border: 1.5px solid #f0f0f0 !important;
+    background: #fff !important;
+  }
+
+  .modal-body {
+    background: #f5f5fa !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .product-info-col {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .product-image-container img {
+    max-width: 90vw !important;
+    max-height: 180px !important;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .product-info-col>* {
+    margin-bottom: 0.85rem !important;
+  }
+
+  .product-info-col .d-flex.align-items-center.mb-2.flex-wrap {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .input-group.mb-3 {
+    max-width: 100% !important;
+  }
+}
+
 /* Animation for modal */
 #productDetailModal .modal-content {
   animation: slideInUp 0.3s ease-out;
@@ -441,5 +509,46 @@
   #productDetailModal .modal-dialog {
     max-width: 98vw;
     width: 98vw;
+  }
+}
+
+/* Fix modal header gradient che khuất góc trên mobile */
+@media (max-width: 576px) {
+  .modal-content {
+    border-radius: 14px !important;
+    overflow: hidden !important;
+  }
+
+  .modal-header {
+    border-top-left-radius: 14px !important;
+    border-top-right-radius: 14px !important;
+    background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%) !important;
+    color: #fff !important;
+    width: 100%;
+    margin: 0 !important;
+    padding: 14px 18px 12px 18px !important;
+    box-sizing: border-box;
+    min-height: unset;
+  }
+
+  .modal-title {
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .modal-header .btn-close,
+  .modal-header .custom-fa-close {
+    filter: invert(1);
+    color: #fff !important;
+    opacity: 1 !important;
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }

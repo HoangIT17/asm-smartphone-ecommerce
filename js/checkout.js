@@ -197,13 +197,15 @@ class CheckoutManager {
     let html = '';
     let subtotal = 0;
 
-    html += `<table class="table mb-0 align-middle">
+    html += `<div class="table-responsive"><table class="table align-middle mb-0 cart-table">
       <thead>
         <tr>
-          <th class="text-center">Product</th>
+          <th class="text-center">Image</th>
+          <th class="text-center">Product Name</th>
+          <th class="text-center">Price</th>
           <th class="text-center">Quantity</th>
           <th class="text-center">Total</th>
-          <th></th>
+          <th class="text-center"></th>
         </tr>
       </thead>
       <tbody>`;
@@ -214,35 +216,35 @@ class CheckoutManager {
       subtotal += itemTotal;
 
       html += `<tr>
-        <td>
-          <div class="d-flex align-items-center gap-3">
-            ${item.image ? `<img src="${item.image}" alt="${item.name}" class="product-image-checkout flex-shrink-0">` : ''}
-            <div>
-              <div class="fw-bold" style="font-size:1.13rem;">${item.name}</div>
-              ${item.category ? `<div class="text-muted small mb-1">${item.category}</div>` : ''}
-              <div class="product-price text-primary small">${(price || 0).toLocaleString()} ₫</div>
-            </div>
-          </div>
+        <td class="text-center">
+          ${item.image ? `<img src="${item.image}" alt="${item.name}" class="product-image-checkout flex-shrink-0">` : ''}
+        </td>
+        <td class="text-center">
+          <div class="fw-bold" style="font-size:1.13rem;">${item.name}</div>
+          ${item.category ? `<div class="text-muted small mb-1">${item.category}</div>` : ''}
+        </td>
+        <td class="text-center">
+          <div class="product-price text-primary small">${(price || 0).toLocaleString()} ₫</div>
         </td>
         <td class="text-center">
           <div class="quantity-controls justify-content-center">
-            <button class="btn btn-sm btn-outline-secondary" onclick="checkoutManager.updateQuantity(${index}, -1)">-</button>
+            <button class="btn btn-outline-secondary" onclick="checkoutManager.updateQuantity(${index}, -1)">-</button>
             <span class="quantity-display">${item.quantity}</span>
-            <button class="btn btn-sm btn-outline-secondary" onclick="checkoutManager.updateQuantity(${index}, 1)">+</button>
+            <button class="btn btn-outline-secondary" onclick="checkoutManager.updateQuantity(${index}, 1)">+</button>
           </div>
         </td>
         <td class="text-center align-middle">
           <span class="fw-bold text-danger" style="font-size:1.15rem;">${itemTotal.toLocaleString()} ₫</span>
         </td>
         <td class="text-center">
-          <button class="btn btn-sm btn-outline-danger" onclick="checkoutManager.removeFromCart(${index})">
+          <button class="btn btn-outline-danger" onclick="checkoutManager.removeFromCart(${index})">
             <i class="fas fa-trash"></i>
           </button>
         </td>
       </tr>`;
     });
 
-    html += '</tbody></table>';
+    html += '</tbody></table></div>';
     checkoutItemsDiv.innerHTML = html;
 
     // Update order summary
@@ -384,4 +386,37 @@ $(document).ready(function () {
 
   // Khởi tạo ban đầu
   loadProvinces();
-}); 
+});
+
+$(document).ready(function () {
+  // Load provinces
+  $('#selectProvince').select2({
+    placeholder: 'Select province/city',
+    data: VN_PROVINCES.map(p => ({ id: p.code, text: p.name }))
+  });
+  // Load districts when province changes
+  $('#selectProvince').on('change', function () {
+    const provinceCode = $(this).val();
+    const province = VN_PROVINCES.find(p => String(p.code) === String(provinceCode));
+    const districts = province ? province.districts : [];
+    $('#selectDistrict').empty().select2({
+      placeholder: 'Select district',
+      data: districts.map(d => ({ id: d.name, text: d.name }))
+    });
+  });
+  // Init empty district
+  $('#selectDistrict').select2({ placeholder: 'Select district' });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var btn = document.getElementById('proceedToCheckoutBtn');
+  if (btn) {
+    btn.addEventListener('click', function () {
+      window.location.href = 'checkout-info.html';
+    });
+  }
+});
+
+fetch('footer.html')
+  .then(res => res.text())
+  .then(html => document.getElementById('footerContainer').innerHTML = html);

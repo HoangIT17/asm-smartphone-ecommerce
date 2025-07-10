@@ -1,185 +1,115 @@
-// Navbar scroll effect
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
-
-// Back to top button
-const backToTopButton = document.querySelector('.back-to-top');
-window.addEventListener('scroll', function() {
-    if (window.scrollY > 300) {
-        backToTopButton.classList.add('active');
-    } else {
-        backToTopButton.classList.remove('active');
-    }
-});
-
-backToTopButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 70,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Animation on scroll
-function animateOnScroll() {
-    const elements = document.querySelectorAll('.slide-in-left, .slide-in-right, .fade-in');
-    
-    elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (elementPosition < windowHeight - 100) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateX(0)';
-        }
-    });
-}
-
-window.addEventListener('scroll', animateOnScroll);
-window.addEventListener('load', animateOnScroll);
-
-// Product card hover effect
-const productCards = document.querySelectorAll('.product-card');
-productCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.classList.add('animate__animated', 'animate__pulse');
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.classList.remove('animate__animated', 'animate__pulse');
-    });
-});
-
-// Cart quantity controls
-document.querySelectorAll('.quantity-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const input = this.parentElement.querySelector('.quantity-input');
-        let value = parseInt(input.value);
-        
-        if (this.classList.contains('minus')) {
-            value = value > 1 ? value - 1 : 1;
-        } else {
-            value = value + 1;
-        }
-        
-        input.value = value;
-        updateCartTotal();
-    });
-});
-
-function updateCartTotal() {
-    // This function would update the cart total based on quantities and prices
-    // Implementation depends on your specific needs
-}
-
-// Form validation for login and register
-function validateForm(formId) {
-    const form = document.getElementById(formId);
-    let isValid = true;
-    
-    // Validate each required field
-    form.querySelectorAll('[required]').forEach(field => {
-        if (!field.value.trim()) {
-            showError(field, 'Trường này là bắt buộc');
-            isValid = false;
-        } else {
-            hideError(field);
-        }
-        
-        // Special validation for email
-        if (field.type === 'email' && field.value) {
-            if (!validateEmail(field.value)) {
-                showError(field, 'Email không hợp lệ');
-                isValid = false;
-            }
-        }
-        
-        // Special validation for password
-        if (field.id === 'password' && field.value) {
-            if (field.value.length < 6) {
-                showError(field, 'Mật khẩu phải có ít nhất 6 ký tự');
-                isValid = false;
-            }
-        }
-        
-        // Confirm password validation
-        if (field.id === 'confirmPassword' && field.value) {
-            const password = document.getElementById('password').value;
-            if (field.value !== password) {
-                showError(field, 'Mật khẩu không khớp');
-                isValid = false;
-            }
-        }
-    });
-    
-    return isValid;
-}
-
-function showError(field, message) {
-    const errorElement = field.nextElementSibling;
-    if (errorElement && errorElement.classList.contains('error-message')) {
-        errorElement.textContent = message;
-        errorElement.style.display = 'block';
-        field.classList.add('is-invalid');
-    }
-}
-
-function hideError(field) {
-    const errorElement = field.nextElementSibling;
-    if (errorElement && errorElement.classList.contains('error-message')) {
-        errorElement.style.display = 'none';
-        field.classList.remove('is-invalid');
-    }
-}
-
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-}
-
-// Initialize form validation
-document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
-            if (!validateForm('loginForm')) {
-                e.preventDefault();
-            }
+ // Auto banner carousel
+(function () {
+    let current = 0;
+    const slides = document.querySelectorAll('.banner-slide');
+    const dots = document.querySelectorAll('.banner-dot');
+    function showSlide(idx) {
+        slides.forEach((s, i) => {
+            s.classList.toggle('active', i === idx);
+            if (dots[i]) dots[i].classList.toggle('active', i === idx);
         });
+        current = idx;
     }
-    
-    if (registerForm) {
-        registerForm.addEventListener('submit', function(e) {
-            if (!validateForm('registerForm')) {
-                e.preventDefault();
-            }
-        });
+    function nextSlide() {
+        showSlide((current + 1) % slides.length);
     }
+    window.changeSlide = function (dir) {
+        let idx = (current + dir + slides.length) % slides.length;
+        showSlide(idx);
+    }
+    window.currentSlide = function (idx) {
+        showSlide(idx);
+    }
+    setInterval(nextSlide, 4000);
+})();
+
+// Initialize cart badge on page load
+document.addEventListener('DOMContentLoaded', function () {
+    // Cart manager is already initialized in cart.js
+    // No need for additional initialization here
+    // Gán sự kiện cho các sản phẩm ở các section
+    document.querySelectorAll('.product-card').forEach(function (card) {
+        // Click vào ảnh sẽ mở modal chi tiết
+        const img = card.querySelector('img');
+        if (img) {
+            img.style.cursor = 'pointer';
+            img.onclick = function (e) {
+                const name = card.querySelector('.product-title').textContent;
+                const price = card.querySelector('.product-price').textContent;
+                const product = { name, price, image: img ? img.src : '' };
+                showProductModal(product);
+                e.stopPropagation();
+            };
+        }
+        // Nút Add to Cart vẫn hoạt động như cũ
+        const btn = card.querySelector('.btn-add-cart');
+        if (btn) {
+            btn.onclick = function (e) {
+                e.stopPropagation();
+                const name = card.querySelector('.product-title').textContent;
+                const price = card.querySelector('.product-price').textContent;
+                const image = img ? img.src : '';
+                // Tạo id duy nhất cho mỗi sản phẩm (nên lấy từ data-id nếu có)
+                let id = card.getAttribute('data-id');
+                if (!id) id = name + '-' + price;
+                const product = { id, name, price, image, quantity: 1 };
+                addToCartWithQty(product, 1);
+                updateCartDisplay();
+                if (typeof showToast === 'function') {
+                    showToast('', 'success', name);
+                }
+            };
+        }
+    });
 });
 
-      
+// Lấy giỏ hàng từ localStorage
+function getCartCookie() {
+    const value = localStorage.getItem('cart');
+    return value ? JSON.parse(value) : [];
+}
+
+function updateCartBadge() {
+    const cart = getCartCookie();
+    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const badge = document.getElementById('cartBadge');
+    if (badge) badge.textContent = total;
+}
+
+function renderCheckoutItems() {
+    const cart = getCartCookie();
+    // ... code render như cũ ...
+}
+
+function updateCartDisplay() {
+    const cartBadge = document.getElementById('cartBadge');
+    if (cartBadge) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartBadge.textContent = totalItems;
+    }
+}
+
+// // Gán lại sự kiện cho nút Add to Cart để gọi updateCartDisplay
+// document.addEventListener('DOMContentLoaded', function () {
+//     document.querySelectorAll('.btn-add-cart').forEach(function (btn) {
+//         // Xóa mọi .onclick cũ nếu có
+//         btn.onclick = null;
+//         btn.addEventListener('click', function () {
+//             setTimeout(updateCartDisplay, 100);
+//             if (typeof showToast === 'function') {
+//                 showToast('Product added to cart successfully!', 'success');
+//             }
+//         });
+//     });
+// });
+
+window.scrollToCategories = function () {
+    const section = document.getElementById('categories');
+    if (section) {
+        const y = section.getBoundingClientRect().top + window.pageYOffset;
+        const navbar = document.querySelector('.navbar');
+        const offset = navbar ? navbar.offsetHeight : 0;
+        window.scrollTo({ top: y - offset - 0, behavior: 'smooth' });
+    }
+}

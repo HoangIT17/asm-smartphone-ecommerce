@@ -132,40 +132,5 @@
   <script src="./js/vn-province-district.js"></script>
   <script src="./js/cart.js"></script>
   <script src="./js/checkout.js"></script>
-  <script>
-    $(document).ready(function () {
-      // Load provinces
-      $('#selectProvince').select2({
-        placeholder: 'Select province/city',
-        data: VN_PROVINCES.map(p => ({ id: p.code, text: p.name }))
-      });
-      // Load districts when province changes
-      $('#selectProvince').on('change', function () {
-        const provinceCode = $(this).val();
-        const province = VN_PROVINCES.find(p => String(p.code) === String(provinceCode));
-        const districts = province ? province.districts : [];
-        $('#selectDistrict').empty().select2({
-          placeholder: 'Select district',
-          data: districts.map(d => ({ id: d.name, text: d.name }))
-        });
-      });
-      // Init empty district
-      $('#selectDistrict').select2({ placeholder: 'Select district' });
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
-      var btn = document.getElementById('proceedToCheckoutBtn');
-      if (btn) {
-        btn.addEventListener('click', function () {
-          window.location.href = 'checkout-info.html';
-        });
-      }
-    });
-
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(html => document.getElementById('footerContainer').innerHTML = html);
-  </script>
 </body>
-
 </html>
