@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             totalAmount: 32990000,
             orderDate: '2025-01-15',
             status: 'Delivered',
-            shippingAddress: '123 Nguyen Trai, District 1, Ho Chi Minh City'
+            shippingAddress: '123 Tran Phu, Hai Chau District, Da Nang City'
         },
         {
             id: 'ORD002',
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             totalAmount: 9170000,
             orderDate: '2025-01-18',
             status: 'Shipped',
-            shippingAddress: '456 Le Lai, District 3, Ho Chi Minh City'
+            shippingAddress: '456 Le Duan, Thanh Khe District, Da Nang City'
         },
         {
             id: 'ORD003',
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             totalAmount: 25990000,
             orderDate: '2025-02-01',
             status: 'Processing',
-            shippingAddress: '789 Hai Ba Trung, District 1, Ho Chi Minh City'
+            shippingAddress: '789 Nguyen Van Linh, Hai Chau District, Da Nang City'
         },
         {
             id: 'ORD004',
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             totalAmount: 4760000,
             orderDate: '2025-02-05',
             status: 'Pending',
-            shippingAddress: '321 Vo Van Tan, District 3, Ho Chi Minh City'
+            shippingAddress: '321 Bach Dang, Hai Chau District, Da Nang City'
         },
         {
             id: 'ORD005',
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             totalAmount: 5980000,
             orderDate: '2025-02-08',
             status: 'Cancelled',
-            shippingAddress: '123 Nguyen Trai, District 1, Ho Chi Minh City'
+            shippingAddress: '654 Hung Vuong, Son Tra District, Da Nang City'
         }
     ];
 
@@ -82,12 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Get status badge class
     function getStatusBadgeClass(status) {
         switch(status) {
-            case 'Pending': return 'bg-yellow-100 text-yellow-800';
-            case 'Processing': return 'bg-blue-100 text-blue-800';
-            case 'Shipped': return 'bg-purple-100 text-purple-800';
-            case 'Delivered': return 'bg-green-100 text-green-800';
-            case 'Cancelled': return 'bg-red-100 text-red-800';
-            default: return 'bg-gray-100 text-gray-800';
+            case 'Pending': return 'bg-warning text-dark';
+            case 'Processing': return 'bg-info text-white';
+            case 'Shipped': return 'bg-primary text-white';
+            case 'Delivered': return 'bg-success text-white';
+            case 'Cancelled': return 'bg-danger text-white';
+            default: return 'bg-secondary text-white';
         }
     }
 
@@ -167,63 +167,178 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.id = 'orderDetailsModal';
         modal.innerHTML = `
             <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Order Details - ${order.id}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <div class="modal-content shadow-lg border-0">
+                    <div class="modal-header card-header-gradient-blue text-white border-0">
+                        <div class="d-flex align-items-center">
+                            <span class="material-symbols-outlined me-2 fs-4">receipt_long</span>
+                            <h5 class="modal-title mb-0 fw-bold">Order Details - ${order.id}</h5>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <h6>Customer Information</h6>
-                                <p class="mb-1"><strong>Name:</strong> ${order.customerName}</p>
-                                <p class="mb-1"><strong>Email:</strong> ${order.customerEmail}</p>
-                                <p class="mb-0"><strong>Address:</strong> ${order.shippingAddress}</p>
+                    <div class="modal-body p-4 order-details-gradient">
+                        <!-- Customer & Order Info Cards -->
+                        <div class="row mb-4">
+                            <div class="col-lg-6 mb-3">
+                                <div class="card border-0 shadow-sm h-100 card-gradient-white">
+                                    <div class="card-header card-header-gradient-blue text-white border-0">
+                                        <div class="d-flex align-items-center">
+                                            <span class="material-symbols-outlined me-2">person</span>
+                                            <h6 class="mb-0 fw-semibold">Customer Information</h6>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3 order-info-item">
+                                            <div class="info-icon-wrapper me-3">
+                                                <span class="material-symbols-outlined text-primary">badge</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted d-block">Name</small>
+                                                <strong class="text-dark">${order.customerName}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3 order-info-item">
+                                            <div class="info-icon-wrapper me-3">
+                                                <span class="material-symbols-outlined text-primary">email</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted d-block">Email</small>
+                                                <strong class="text-dark">${order.customerEmail}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start order-info-item">
+                                            <div class="info-icon-wrapper me-3">
+                                                <span class="material-symbols-outlined text-primary">location_on</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted d-block">Address</small>
+                                                <strong class="text-dark">${order.shippingAddress}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <h6>Order Information</h6>
-                                <p class="mb-1"><strong>Order ID:</strong> ${order.id}</p>
-                                <p class="mb-1"><strong>Date:</strong> ${new Date(order.orderDate).toLocaleDateString('vi-VN')}</p>
-                                <p class="mb-0"><strong>Status:</strong> 
-                                    <span class="px-2 py-1 rounded-full text-xs font-medium ${getStatusBadgeClass(order.status)}">
-                                        ${order.status}
-                                    </span>
-                                </p>
+                            <div class="col-lg-6 mb-3">
+                                <div class="card border-0 shadow-sm h-100 card-gradient-white">
+                                    <div class="card-header card-header-gradient-green text-white border-0">
+                                        <div class="d-flex align-items-center">
+                                            <span class="material-symbols-outlined me-2">shopping_cart</span>
+                                            <h6 class="mb-0 fw-semibold">Order Information</h6>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3 order-info-item">
+                                            <div class="info-icon-wrapper me-3">
+                                                <span class="material-symbols-outlined text-success">confirmation_number</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted d-block">Order ID</small>
+                                                <strong class="text-dark">${order.id}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3 order-info-item">
+                                            <div class="info-icon-wrapper me-3">
+                                                <span class="material-symbols-outlined text-success">calendar_today</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted d-block">Date</small>
+                                                <strong class="text-dark">${new Date(order.orderDate).toLocaleDateString('vi-VN')}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center order-info-item">
+                                            <div class="info-icon-wrapper me-3">
+                                                <span class="material-symbols-outlined text-success">info</span>
+                                            </div>
+                                            <div>
+                                                <small class="text-muted d-block">Status</small>
+                                                <span class="badge status-badge-enhanced ${getStatusBadgeClass(order.status)}">
+                                                    ${order.status}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
-                        <h6>Order Items</h6>
-                        <div class="table-responsive">
-                            <table class="table table-sm">
-                                <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Quantity</th>
-                                        <th>Unit Price</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    ${order.items.map(item => `
-                                        <tr>
-                                            <td>${item.productName}</td>
-                                            <td>${item.quantity}</td>
-                                            <td>${item.price.toLocaleString('vi-VN')} VND</td>
-                                            <td>${(item.price * item.quantity).toLocaleString('vi-VN')} VND</td>
-                                        </tr>
-                                    `).join('')}
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th colspan="3">Total Amount:</th>
-                                        <th>${order.totalAmount.toLocaleString('vi-VN')} VND</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                        <!-- Order Items Card -->
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header card-header-gradient-yellow text-dark border-0">
+                                <div class="d-flex align-items-center">
+                                    <span class="material-symbols-outlined me-2">inventory_2</span>
+                                    <h6 class="mb-0 fw-semibold">Order Items</h6>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th class="border-0 fw-semibold text-dark ps-4">
+                                                    <span class="material-symbols-outlined me-2 align-middle">category</span>Product
+                                                </th>
+                                                <th class="border-0 fw-semibold text-dark text-center">
+                                                    <span class="material-symbols-outlined me-2 align-middle">tag</span>Quantity
+                                                </th>
+                                                <th class="border-0 fw-semibold text-dark text-end">
+                                                    <span class="material-symbols-outlined me-2 align-middle">attach_money</span>Unit Price
+                                                </th>
+                                                <th class="border-0 fw-semibold text-dark text-end pe-4">
+                                                    <span class="material-symbols-outlined me-2 align-middle">calculate</span>Total
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            ${order.items.map((item, index) => `
+                                                <tr class="border-bottom">
+                                                    <td class="ps-4 py-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="product-icon-wrapper me-3">
+                                                                <span class="material-symbols-outlined text-primary">devices</span>
+                                                            </div>
+                                                            <div>
+                                                                <strong class="text-dark d-block">${item.productName}</strong>
+                                                                <small class="text-muted">Product ID: ${item.productId}</small>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center py-3">
+                                                        <span class="badge bg-secondary bg-opacity-20 text-dark px-3 py-2 fs-6">${item.quantity}</span>
+                                                    </td>
+                                                    <td class="text-end py-3">
+                                                        <strong class="text-dark" style="white-space: nowrap;">${item.price.toLocaleString('vi-VN')} VND</strong>
+                                                    </td>
+                                                    <td class="text-end py-3 pe-4">
+                                                        <strong class="text-success fs-6" style="white-space: nowrap;">${(item.price * item.quantity).toLocaleString('vi-VN')} VND</strong>
+                                                    </td>
+                                                </tr>
+                                            `).join('')}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- Total Summary -->
+                                <div class="order-total-section border-top">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-8">
+                                            <div class="d-flex align-items-center">
+                                                <div class="info-icon-wrapper me-3">
+                                                    <span class="material-symbols-outlined text-success fs-4">payments</span>
+                                                </div>
+                                                <span class="fs-5 fw-semibold text-dark">Total Amount</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 text-end">
+                                            <span class="fs-3 fw-bold text-success" style="white-space: nowrap;">${order.totalAmount.toLocaleString('vi-VN')} VND</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <div class="modal-footer modal-footer-enhanced border-0 p-4">
+                        <button type="button" class="btn btn-outline-secondary btn-enhanced px-4 py-2" data-bs-dismiss="modal">
+                            <span class="material-symbols-outlined me-2 align-middle">close</span>Close
+                        </button>
+                        
                     </div>
                 </div>
             </div>

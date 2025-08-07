@@ -212,3 +212,100 @@ body {
     background-color: #fee2e2; /* Red light */
     color: #991b1b; /* Red dark */
 }
+
+/* --- Enhanced Order Details Modal Styling --- */
+.modal-xl {
+    max-width: 1200px;
+}
+
+.order-details-gradient {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.card-gradient-white {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.card-header-gradient-blue {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+}
+
+.card-header-gradient-green {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+.card-header-gradient-yellow {
+    background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+}
+
+.info-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(79, 70, 229, 0.1);
+}
+
+.product-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(79, 70, 229, 0.1);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(79, 70, 229, 0.05);
+    transition: background-color 0.15s ease-in-out;
+}
+
+.order-total-section {
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.status-badge-enhanced {
+    border-radius: 25px;
+    padding: 8px 16px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-footer-enhanced {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-top: 1px solid #e2e8f0;
+}
+
+.btn-enhanced {
+    border-radius: 25px;
+    padding: 10px 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-enhanced:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.order-info-item {
+    transition: all 0.3s ease;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.order-info-item:hover {
+    background-color: rgba(79, 70, 229, 0.05);
+    transform: translateX(5px);
+}

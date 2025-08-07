@@ -1,12 +1,79 @@
+// Default accounts data
+function getDefaultAccounts() {
+    return [
+        {
+            id: 1,
+            email: "admin@gmail.com",
+            password: "123123",
+            role: "admin",
+            firstName: "Pham",
+            lastName: "Hoang",
+            createdAt: "2025-01-01",
+            status: "Active"
+        },
+        {
+            id: 2,
+            email: "customer@gmail.com",
+            password: "123123",
+            role: "customer",
+            firstName: "Marson",
+            lastName: "Pham",
+            createdAt: "2025-01-01",
+            status: "Active"
+        },
+        {
+            id: 3,
+            email: "linhnhi@gmail.com",
+            password: "123456",
+            role: "customer",
+            firstName: "Linh",
+            lastName: "Nhi",
+            createdAt: "2025-01-15",
+            status: "Active"
+        },
+        {
+            id: 4,
+            email: "duchp@gmail.com",
+            password: "password123",
+            role: "customer",
+            firstName: "Duc",
+            lastName: "Hp",
+            createdAt: "2025-02-01",
+            status: "Active"
+        },
+        {
+            id: 5,
+            email: "kieulinh@gmail.com",
+            password: "kieulinh123",
+            role: "customer",
+            firstName: "Kieu",
+            lastName: "Linh",
+            createdAt: "2025-02-10",
+            status: "Active"
+        }
+    ];
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    // FORCE RESET TO DEFAULT DATA (uncomment next 2 lines to reset)
+    // localStorage.removeItem('accounts');
+    // console.log('Force reset to default data');
+    
     // Load data from localStorage, if not exists then use default data
     let accounts = JSON.parse(localStorage.getItem('accounts'));
     
+    console.log('Data from localStorage:', accounts);
+    
     // If no data in localStorage, initialize with default data
     if (!accounts || accounts.length === 0) {
+        console.log('No data in localStorage, using default data');
         accounts = getDefaultAccounts();
         localStorage.setItem('accounts', JSON.stringify(accounts));
+    } else {
+        console.log('Using existing data from localStorage');
     }
+
+    console.log('Final accounts array:', accounts); // Debug log
 
     // Load admin information
     loadAdminInfo();
@@ -18,8 +85,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Render accounts table
     function renderAccounts() {
+        console.log('renderAccounts called');
         const tbody = document.querySelector('.custom-table tbody');
-        if (!tbody) return;
+        console.log('Table tbody found:', tbody);
+        console.log('Accounts to render:', accounts);
+        
+        if (!tbody) {
+            console.error('Table tbody not found!');
+            return;
+        }
 
         tbody.innerHTML = accounts.map(account => `
             <tr class="hover:bg-gray-50 transition-colors">
@@ -58,6 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 </td>
             </tr>
         `).join('');
+        
+        console.log('Table rendered with', accounts.length, 'accounts');
+        console.log('Table HTML:', tbody.innerHTML.substring(0, 200) + '...');
     }
 
     // Create Account Function
@@ -97,13 +174,22 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide email and password fields completely for editing
         const emailField = document.getElementById('email').parentElement;
         const passwordField = document.getElementById('password').parentElement;
+        const confirmPasswordField = document.getElementById('confirmPassword');
         
         emailField.style.display = 'none';
         passwordField.style.display = 'none';
         
+        // Hide confirm password field for editing
+        if (confirmPasswordField && confirmPasswordField.parentElement) {
+            confirmPasswordField.parentElement.style.display = 'none';
+        }
+        
         // Remove required attribute from hidden fields
         document.getElementById('email').removeAttribute('required');
         document.getElementById('password').removeAttribute('required');
+        if (confirmPasswordField) {
+            confirmPasswordField.removeAttribute('required');
+        }
         
         // Remove any existing read-only email info
         const existingEmailInfo = document.getElementById('emailInfo');
@@ -293,6 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show ALL fields for creating new account
         const emailField = document.getElementById('email');
         const passwordField = document.getElementById('password');
+        const confirmPasswordField = document.getElementById('confirmPassword');
         
         if (emailField && emailField.parentElement) {
             emailField.parentElement.style.display = 'block';
@@ -300,10 +387,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (passwordField && passwordField.parentElement) {
             passwordField.parentElement.style.display = 'block';
         }
+        if (confirmPasswordField && confirmPasswordField.parentElement) {
+            confirmPasswordField.parentElement.style.display = 'block';
+        }
         
         // Add back required attribute for new account creation
         if (emailField) emailField.setAttribute('required', 'required');
         if (passwordField) passwordField.setAttribute('required', 'required');
+        if (confirmPasswordField) confirmPasswordField.setAttribute('required', 'required');
         
         // Remove any read-only email info from previous edit
         const existingEmailInfo = document.getElementById('emailInfo');
@@ -342,8 +433,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Validate password
             const password = formData.get('password');
+            const confirmPassword = formData.get('confirmPassword');
+            
             if (password.length < 6) {
                 showToast('Password must be at least 6 characters long.', 'error');
+                return;
+            }
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                showToast('Passwords do not match! Please check and try again.', 'error');
                 return;
             }
             
@@ -631,58 +730,3 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCharts();
 
 });
-
-function getDefaultAccounts() {
-    return [
-        {
-            id: 1,
-            email: "admin@gmail.com",
-            password: "123123",
-            role: "admin",
-            firstName: "Pham",
-            lastName: "Hoang",
-            createdAt: "2025-01-01",
-            status: "Active"
-        },
-        {
-            id: 2,
-            email: "customer@gmail.com",
-            password: "123123",
-            role: "customer",
-            firstName: "Marson",
-            lastName: "Pham",
-            createdAt: "2025-01-01",
-            status: "Active"
-        },
-        {
-            id: 3,
-            email: "linhnhi@gmail.com",
-            password: "123456",
-            role: "customer",
-            firstName: "Linh",
-            lastName: "Nhi",
-            createdAt: "2025-01-15",
-            status: "Active"
-        },
-        {
-            id: 4,
-            email: "duchp@gmail.com",
-            password: "password123",
-            role: "customer",
-            firstName: "Duc",
-            lastName: "Hp",
-            createdAt: "2025-02-01",
-            status: "Active"
-        },
-        {
-            id: 5,
-            email: "kieulinh@gmail.com",
-            password: "kieulinh123",
-            role: "customer",
-            firstName: "Kieu",
-            lastName: "Linh",
-            createdAt: "2025-02-10",
-            status: "Active"
-        }
-    ];
-}

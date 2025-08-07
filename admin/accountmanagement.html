@@ -145,11 +145,11 @@
                     <h5 class="modal-title">Add New Account</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body" id="editNotice">
+                <div class="modal-body">
                     <!-- Security notice for editing -->
-                    <!-- <div class="alert alert-info mb-3" id="editNotice" style="display: none;">
+                    <div class="alert alert-info mb-3" id="editNotice" style="display: none;">
                         <small><strong>Security Note:</strong> For security reasons, email and password cannot be modified. Only role and personal information can be updated.</small>
-                    </div> -->
+                    </div>
                     
                     <form id="accountForm">
                         <div class="mb-3">
@@ -161,8 +161,13 @@
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="role" class="form-label">Role</label>
                             <select class="form-select" id="role" name="role" required>
+                                <option value="">Select Role</option>
                                 <option value="customer">Customer</option>
                                 <option value="admin">Admin</option>
                             </select>
