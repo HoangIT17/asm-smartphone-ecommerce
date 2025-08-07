@@ -351,8 +351,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <div class="tab-pane fade show active" id="url-panel" role="tabpanel">
                                         <div class="input-group mb-2">
                                             <input type="url" class="form-control" id="productImage" name="image" 
-                                                   value="${isEdit ? product.image : ''}" placeholder="https://example.com/image.jpg"
-                                                   oninput="previewImage(this)">
+                                                value="${isEdit ? product.image : ''}" placeholder="https://example.com/image.jpg"
+                                                oninput="previewImage(this)">
                                             <button type="button" class="btn btn-outline-secondary" onclick="useSampleImage()" title="Random sample image">
                                                 <span class="material-symbols-outlined">shuffle</span>
                                             </button>
@@ -377,7 +377,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                             <input type="file" id="imageUpload" accept="image/*" class="d-none" onchange="handleImageUpload(this)">
                                             <div class="upload-content">
                                                 <span class="material-symbols-outlined text-gray-400" style="font-size: 48px;">cloud_upload</span>
-                                                <p class="mb-2">Drag & drop your image here, or <button type="button" class="btn btn-link p-0" onclick="document.getElementById('imageUpload').click()">browse</button></p>
+                                                <p class="mb-2">Drag & drop your image here, or <button type="button" class="btn btn-link p-0" 
+                                                    onclick="document.getElementById('imageUpload').click()">browse</button></p>
                                                 <small class="text-muted">Supports: JPG, PNG, GIF, WebP (max 5MB)</small>
                                             </div>
                                         </div>
