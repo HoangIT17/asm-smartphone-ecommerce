@@ -1,0 +1,321 @@
+body {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 50%, #004085 100%);
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+.profile-container {
+    padding-top: 120px;
+    padding-bottom: 60px;
+}
+
+.profile-header-card {
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 15px 35px rgba(0, 123, 255, 0.1);
+    border: 1px solid rgba(0, 123, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-header-card h2 {
+    color: #333 !important;
+    font-weight: 700;
+    font-size: 2.2rem;
+}
+
+.profile-header-card p {
+    color: #666 !important;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    color: white;
+    font-size: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.profile-avatar::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(45deg, #007bff, #0056b3, #004085, #007bff);
+    border-radius: 50%;
+    z-index: -1;
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+.role-badge {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.profile-main-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 123, 255, 0.1);
+}
+
+.section-title {
+    color: #007bff;
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f8f9fa;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+}
+
+.profile-info-section {
+    margin-bottom: 30px;
+}
+
+.info-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid #007bff;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.05), rgba(0, 86, 179, 0.05));
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover::before {
+    transform: translateX(0);
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+    cursor: pointer;
+}
+
+.info-label {
+    color: #007bff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.info-label i {
+    margin-right: 8px;
+    width: 16px;
+}
+
+.info-value {
+    color: #333;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.stats-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    border: 2px solid #f0f0f0;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.stat-card:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    border-color: #007bff;
+    box-shadow: 0 15px 35px rgba(0, 123, 255, 0.2);
+    cursor: pointer;
+}
+
+.stat-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 1.8rem;
+    color: white;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+}
+
+.stat-icon.cart {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+}
+
+.stat-icon.wishlist {
+    background: linear-gradient(135deg, #dc3545, #fd7e14);
+    box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #666;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.action-buttons {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.btn-action {
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-action::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-action:hover::before {
+    left: 100%;
+}
+
+.btn-exit {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    border-color: #28a745;
+}
+
+.btn-exit:hover {
+    background: linear-gradient(135deg, #20c997, #28a745);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+    color: white;
+}
+
+.btn-logout {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border-color: #007bff;
+}
+
+.btn-logout:hover {
+    background: linear-gradient(135deg, #0056b3, #007bff);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+    color: white;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .profile-container {
+        padding-top: 100px;
+    }
+
+    .profile-header-card {
+        padding: 30px 20px;
+    }
+
+    .profile-main-card {
+        padding: 30px 20px;
+    }
+
+    .btn-action {
+        margin: 5px 0;
+        width: 100%;
+    }
+}
+
+/* Animation for numbers */
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-number {
+    animation: countUp 0.6s ease-out;
+}

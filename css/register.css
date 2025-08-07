@@ -52,6 +52,52 @@
   animation: slideIn 2s ease-in-out;
 }
 
+/* Password Requirements Styling */
+.password-requirements {
+  transition: all 0.3s ease;
+  animation: fadeIn 0.3s ease;
+}
+
+.password-requirements .card {
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.password-requirements .card-title {
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.requirement-item {
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.requirement-item.text-success {
+  color: #28a745 !important;
+}
+
+.requirement-item.text-muted {
+  color: #6c757d !important;
+}
+
+.requirement-item .req-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.requirement-item .req-icon i {
+  font-size: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -1,5 +1,10 @@
 // Form validation and handling
 document.addEventListener('DOMContentLoaded', function () {
+  // Wait for auth service to load users
+  setTimeout(() => {
+    authService.loadUsers();
+  }, 100);
+
   // Get form elements
   const loginForm = document.getElementById('loginFormElement');
   const registerForm = document.getElementById('registerFormElement');
@@ -23,6 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
     loginForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
+      // Remove existing alerts
+      const existingAlerts = loginForm.querySelectorAll('.alert');
+      existingAlerts.forEach(alert => alert.remove());
+
       // Get form values
       const email = document.getElementById('loginEmail').value;
       const password = document.getElementById('loginPassword').value;
@@ -33,9 +42,42 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      // Here you would typically make an API call to verify credentials
-      // For demo purposes, we'll just redirect to home page
-      window.location.href = 'index.html';
+      // Attempt login
+      const loginResult = authService.login(email, password);
+
+      if (loginResult.success) {
+        // Show success message
+        const successAlert = document.createElement('div');
+        successAlert.className = 'alert alert-success mt-3 animate__animated animate__fadeIn';
+        successAlert.innerHTML = `
+          <div class="d-flex align-items-center">
+            <i class="fas fa-check-circle me-2"></i>
+            <div>
+              <strong>Login successful!</strong> Redirecting...
+            </div>
+          </div>
+        `;
+        loginForm.insertBefore(successAlert, loginForm.firstChild);
+
+        // Disable form
+        const inputs = loginForm.querySelectorAll('input, button');
+        inputs.forEach(input => input.disabled = true);
+
+        // Redirect based on user role after 1 second
+        setTimeout(() => {
+          authService.redirectAfterLogin();
+        }, 1000);
+
+      } else {
+        // Show error message
+        const errorAlert = document.createElement('div');
+        errorAlert.className = 'alert alert-danger mt-3 animate__animated animate__fadeIn';
+        errorAlert.innerHTML = `
+          <i class="fas fa-exclamation-circle me-2"></i>
+          ${loginResult.message}
+        `;
+        loginForm.insertBefore(errorAlert, loginForm.firstChild);
+      }
     });
   }
 

@@ -39,7 +39,7 @@ class CheckoutManager {
     // Process order
     const cart = this.getCart();
     if (cart.length === 0) {
-      this.showMessage('Giỏ hàng của bạn đang trống!', 'warning');
+      this.showMessage('Your cart is empty!', 'warning');
       if (spinner) spinner.classList.add('d-none');
       submitBtn.disabled = false;
       return;
@@ -53,7 +53,7 @@ class CheckoutManager {
       submitBtn.disabled = false;
       // Redirect to order confirmation after 3 seconds
       setTimeout(() => {
-        alert('Cảm ơn bạn đã mua hàng! Chúng tôi sẽ liên hệ sớm nhất.');
+        alert('Thank you for your purchase! We will contact you soon.');
         window.location.href = 'index.html';
       }, 3000);
     }, 2000);
@@ -199,13 +199,13 @@ class CheckoutManager {
 
     html += `<div class="table-responsive"><table class="table align-middle mb-0 cart-table">
       <thead>
-        <tr>
-          <th class="text-center">Image</th>
-          <th class="text-center">Product Name</th>
-          <th class="text-center">Price</th>
-          <th class="text-center">Quantity</th>
-          <th class="text-center">Total</th>
-          <th class="text-center"></th>
+        <tr class="table-header-custom">
+          <th class="text-center text-white fw-bold py-3">Image</th>
+          <th class="text-center text-white fw-bold py-3">Product Name</th>
+          <th class="text-center text-white fw-bold py-3">Price</th>
+          <th class="text-center text-white fw-bold py-3">Quantity</th>
+          <th class="text-center text-white fw-bold py-3">Total</th>
+          <th class="text-center text-white fw-bold py-3"></th>
         </tr>
       </thead>
       <tbody>`;

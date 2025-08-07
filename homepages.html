@@ -15,14 +15,12 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/cart.css">
-    <link rel="stylesheet" href="./css/index.css">
-    
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <a class="navbar-brand d-flex align-items-center" href="homepages.html">
                 <img src="images/logo.png" alt="Logo" class="navbar-logo me-2">
                 Hoang Computer
             </a>
@@ -32,16 +30,33 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="homepages.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="productview.html">Products</a>
+                        <a class="nav-link" href="products.html">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html">Login</a>
+                    <li class="nav-item position-relative">
+                        <a class="nav-link" href="checkout.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-badge" id="cartBadge">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" id="authNavItem">
+                        <a class="nav-link" href="login.html" id="authNavLink">Login</a>
+                    </li>
+                    <li class="nav-item dropdown" id="userDropdown" style="display: none;">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdownToggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                            <span id="userName">User</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdownToggle">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -120,7 +135,7 @@
                         <span class="timer-label">Seconds</span>
                     </div>
                 </div>
-                <button class="btn btn-hero" onclick="showPage('productview')">Shop Sale Items</button>
+                <button class="btn btn-hero" onclick="window.location.href='products.html'">Shop Sale Items</button>
             </div>
         </section>
 
@@ -133,7 +148,7 @@
                 </div>
                 <div class="row g-4">
                     <div class="col-md-6 col-lg-3">
-                        <div class="category-card" onclick="window.location.href='productview.html?category=laptop'">
+                        <div class="category-card" onclick="window.location.href='products.html?category=laptop'">
                             <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop"
                                 alt="Laptop" class="category-img mb-3">
                             <div class="category-content">
@@ -144,7 +159,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3">
-                        <div class="category-card" onclick="window.location.href='productview.html?category=mouse'">
+                        <div class="category-card" onclick="window.location.href='products.html?category=mouse'">
                             <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop"
                                 alt="Mouse computer" class="category-img mb-3">
                             <div class="category-content">
@@ -155,7 +170,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3">
-                        <div class="category-card" onclick="window.location.href='productview.html?category=keyboard'">
+                        <div class="category-card" onclick="window.location.href='products.html?category=keyboard'">
                             <img src="https://images.unsplash.com/photo-1519241047957-be31d7379a5d?w=600&h=400&fit=crop"
                                 alt="Bàn phím" class="category-img mb-3">
                             <div class="category-content">
@@ -166,7 +181,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-3">
-                        <div class="category-card" onclick="window.location.href='productview.html?category=headphone'">
+                        <div class="category-card" onclick="window.location.href='products.html?category=headphone'">
                             <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=400&fit=crop"
                                 alt="Tai nghe" class="category-img mb-3">
                             <div class="category-content">
@@ -197,7 +212,7 @@
                             <div class="product-info p-3">
                                 <div class="product-title">Laptop Asus VivoBook</div>
                                 <div class="product-price">13.990.000 ₫</div>
-                                <button class="btn btn-primary w-100 mt-2" onclick="redirectToLogin()">Add to cart</button>
+                                <button class="btn btn-primary btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -210,7 +225,7 @@
                             <div class="product-info p-3">
                                 <div class="product-title">Laptop Dell Inspiron 1350</div>
                                 <div class="product-price">16.490.000 ₫</div>
-                                <button class="btn btn-primary w-100 mt-2" onclick="redirectToLogin()">Add to cart</button>
+                                <button class="btn btn-primary btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -223,7 +238,7 @@
                             <div class="product-info p-3">
                                 <div class="product-title">Apple Macbook Pro 14</div>
                                 <div class="product-price">11.890.000 ₫</div>
-                                <button class="btn btn-primary w-100 mt-2" onclick="redirectToLogin()">Add to cart</button>
+                                <button class="btn btn-primary btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -236,7 +251,7 @@
                             <div class="product-info p-3">
                                 <div class="product-title">HP 2024 Notebook 15.6</div>
                                 <div class="product-price">890.000 ₫</div>
-                                <button class="btn btn-primary w-100 mt-2" onclick="redirectToLogin()">Add to cart</button>
+                                <button class="btn btn-primary btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -261,7 +276,7 @@
                             <div class="product-info p-3">
                                 <div class="product-title">Laptop Acer Aspire 3</div>
                                 <div class="product-price">11.990.000 ₫</div>
-                                <button class="btn btn-primary w-100 mt-2" onclick="redirectToLogin()">Add to cart</button>
+                                <button class="btn btn-primary btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -274,7 +289,7 @@
                             <div class="product-info p-3">
                                 <div class="product-title">Laptop Lenovo Ideapad 3 </div>
                                 <div class="product-price">12.490.000 ₫</div>
-                                <button class="btn btn-primary w-100 mt-2" onclick="redirectToLogin()">Add to cart</button>
+                                <button class="btn btn-primary btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -287,7 +302,7 @@
                             <div class="product-info p-3">
                                 <div class="product-title">Asus Vivobook Go 15</div>
                                 <div class="product-price">12.390.000 ₫</div>
-                                <button class="btn btn-primary w-100 mt-2" onclick="redirectToLogin()">Add to cart</button>
+                                <button class="btn btn-primary btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -300,7 +315,7 @@
                             <div class="product-info p-3">
                                 <div class="product-title">HP Pavilion 15 i7</div>
                                 <div class="product-price">18.490.000 ₫</div>
-                                <button class="btn btn-primary w-100 mt-2" onclick="redirectToLogin()">Add to cart</button>
+                                <button class="btn btn-primary btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -325,7 +340,7 @@
                             <div class="product-info p-3">
                                 <div class="product-title">Logitech G102 Gen 2 Lightsync Gaming Mouse</div>
                                 <div class="product-price">420.000 ₫</div>
-                                <button class="btn btn-primary w-100 mt-2" onclick="redirectToLogin()">Add to cart</button>
+                                <button class="btn btn-primary btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -338,7 +353,7 @@
                             <div class="product-info p-3">
                                 <div class="product-title">HyperX Cloud Stinger II - Wireless Gaming Headset </div>
                                 <div class="product-price">799.000 ₫</div>
-                                <button class="btn btn-primary w-100 mt-2" onclick="redirectToLogin()">Add to cart</button>
+                                <button class="btn btn-primary btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -351,7 +366,7 @@
                             <div class="product-info p-3">
                                 <div class="product-title">5TECH blue switch mechanical keyboard</div>
                                 <div class="product-price">570.000 ₫</div>
-                                <button class="btn btn-primary w-100 mt-2" onclick="redirectToLogin()">Add to cart</button>
+                                <button class="btn btn-primary btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -364,7 +379,7 @@
                             <div class="product-info p-3">
                                 <div class="product-title">Logitech K865 104 Keys Wireless Bluetooth</div>
                                 <div class="product-price">3.199.000 ₫</div>
-                                <button class="btn btn-primary w-100 mt-2" onclick="redirectToLogin()">Add to cart</button>
+                                <button class="btn btn-primary btn-add-cart w-100 mt-2">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -393,10 +408,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./js/auth.js"></script>
-    <script src="./js/index.js"></script>
+    <script>
+        // Handle user authentication display
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = authService.getCurrentUser();
+            const authNavItem = document.getElementById('authNavItem');
+            const userDropdown = document.getElementById('userDropdown');
+            const userName = document.getElementById('userName');
+            
+            if (currentUser) {
+                // User is logged in
+                authNavItem.style.display = 'none';
+                userDropdown.style.display = 'block';
+                userName.textContent = `${currentUser.firstName} ${currentUser.lastName}`;
+            } else {
+                // User is not logged in
+                authNavItem.style.display = 'block';
+                userDropdown.style.display = 'none';
+            }
+        });
+        
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                authService.logout();
+            }
+        }
+    </script>
     <script src="./js/main.js"></script>
     <!-- Toast Bootstrap container -->
-    <div class="toast-container position-fixed top-0 end-0 p-3" id="toastContainer"></div>
+    <div class="toast-container-custom" id="toastContainer"></div>
 </body>
 
 </html>

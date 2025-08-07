@@ -19,10 +19,51 @@ $(document).ready(function () {
   // Form submit
   $('#customerInfoForm').on('submit', function (e) {
     e.preventDefault();
-    $('#confirmationMessage').removeClass('d-none').html('<i class="fas fa-check-circle me-2"></i>Your order has been placed successfully! Thank you for shopping with us.');
-    $('html, body').animate({ scrollTop: 0 }, 'slow');
+    
+    // Get form data
+    const name = $('#customerName').val();
+    const phone = $('#customerPhone').val();
+    const email = $('#customerEmail').val();
+    const province = $('#selectProvince option:selected').text();
+    const district = $('#selectDistrict option:selected').text();
+    const address = $('#customerAddressDetail').val();
+    const payment = $('#paymentMethod option:selected').text();
+    
+    // Get cart and calculate total
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const subtotal = cart.reduce((total, item) => {
+      const price = typeof item.price === 'string' ? parseInt(item.price.replace(/[^\d]/g, '')) : item.price;
+      return total + (item.quantity * (price || 0));
+    }, 0);
+    const shipping = cart.length > 0 ? 30000 : 0;
+    const tax = Math.round(subtotal * 0.1);
+    const total = subtotal + shipping + tax;
+    
+    // Create order
+    const orderId = 'ORD-' + Date.now();
+    const order = {
+      orderId: orderId,
+      customerInfo: { name, phone, email, province, district, address },
+      paymentMethod: payment,
+      items: cart,
+      subtotal: subtotal,
+      shipping: shipping,
+      tax: tax,
+      total: total,
+      orderDate: new Date().toISOString()
+    };
+    
+    // Save order to localStorage
+    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+    orders.push(order);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    
+    // Clear cart
     localStorage.removeItem('cart');
     $('#cartBadge').text(0);
+    
+    // Redirect to order status page
+    window.location.href = `order-status.html?orderId=${orderId}&total=${total}&payment=${encodeURIComponent(payment)}`;
   });
 
   // Render cart items table & order summary

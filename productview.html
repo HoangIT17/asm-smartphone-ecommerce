@@ -14,6 +14,46 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/cart.css">
     <link rel="stylesheet" href="./css/products.css">
+    <link rel="stylesheet" href="./css/productview.css">
+    <style>
+        /* Toast animation styles */
+        .toast-container-custom {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        .toast {
+            min-width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .toast.bg-warning {
+            background-color: #ffc107 !important;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .toast.bg-success {
+            background-color: #28a745 !important;
+            border-left: 4px solid #198754;
+        }
+        
+        .toast-body {
+            font-size: 14px;
+            padding: 12px 16px;
+        }
+        
+        .btn-close {
+            filter: none;
+            opacity: 0.8;
+        }
+        
+        .btn-close:hover {
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,33 +69,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="homepages.html">Home</a>
+                        <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="products.html">Products</a>
+                        <a class="nav-link" href="productview.html">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                    <li class="nav-item position-relative">
-                        <a class="nav-link" href="checkout.html">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-badge" id="cartBadge">0</span>
-                        </a>
-                    </li>
-                    <li class="nav-item" id="authNavItem">
-                        <a class="nav-link" href="login.html" id="authNavLink">Login</a>
-                    </li>
-                    <li class="nav-item dropdown" id="userDropdown" style="display: none;">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdownToggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user"></i>
-                            <span id="userName">User</span>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="userDropdownToggle">
-                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>Profile</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
-                        </ul>
+                    </li>               
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
                     </li>
                 </ul>
             </div>
@@ -141,6 +164,84 @@
             }
         });
         
+        // Function to redirect to login when trying to purchase
+        function redirectToLogin() {
+            showToast('Please login to add items to cart!', 'warning');
+            
+            // Redirect to login page after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        }
+        
+        // Toast notification function
+        function showToast(message, type = 'info') {
+            const toastContainer = document.getElementById('toastContainer');
+            
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = `toast align-items-center text-dark bg-${type === 'success' ? 'success' : type === 'warning' ? 'warning' : 'primary'} border-0 shadow-lg`;
+            toast.setAttribute('role', 'alert');
+            toast.setAttribute('aria-live', 'assertive');
+            toast.setAttribute('aria-atomic', 'true');
+            toast.setAttribute('data-bs-autohide', 'false');
+            
+            // Add slide down animation
+            toast.style.transform = 'translateY(-100%)';
+            toast.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+            toast.style.opacity = '0';
+            
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body fw-bold">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // Initialize Bootstrap toast
+            const bsToast = new bootstrap.Toast(toast);
+            
+            // Trigger slide down animation
+            requestAnimationFrame(() => {
+                toast.style.transform = 'translateY(0)';
+                toast.style.opacity = '1';
+            });
+            
+            // Show toast
+            bsToast.show();
+            
+            // Auto hide after 2000ms (2 seconds) to match redirect timing
+            setTimeout(() => {
+                hideToast(toast, bsToast);
+            }, 2000);
+            
+            // Handle manual close
+            toast.addEventListener('hidden.bs.toast', () => {
+                toast.remove();
+            });
+            
+            // Handle close button click
+            const closeBtn = toast.querySelector('.btn-close');
+            closeBtn.addEventListener('click', () => {
+                hideToast(toast, bsToast);
+            });
+        }
+        
+        // Function to hide toast with animation
+        function hideToast(toastElement, bsToast) {
+            toastElement.style.transform = 'translateY(-100%)';
+            toastElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                bsToast.hide();
+            }, 300);
+        }
+        
         // Logout function
         function logout() {
             if (confirm('Are you sure you want to logout?')) {
@@ -148,7 +249,7 @@
             }
         }
     </script>
-    <script src="./js/products.js"></script>
+    <script src="./js/productview.js"></script>
     <div id="footerContainer"></div>
     <script>
         fetch('footer.html')

@@ -310,20 +310,34 @@
             showProductModal(product);
             e.stopPropagation();
         };
-        // Nút Add to Cart vẫn hoạt động như cũ
+        // Nút Add to Cart kiểm tra đăng nhập
         productCard.querySelector('.btn-add-cart').onclick = function (e) {
             e.stopPropagation();
-            const name = product.name;
-            const price = product.price;
-            const image = product.image;
-            // Tạo id duy nhất cho mỗi sản phẩm (ưu tiên product.id, nếu không có thì name+price)
-            let id = product.id || (name + '-' + price);
-            const productObj = { id, name, price, image, quantity: 1 };
-            addToCartWithQty(productObj, 1);
-            updateCartDisplay();
-            if (typeof showToast === 'function') {
-                showToast('', 'success', name);
+            
+            // Kiểm tra xem người dùng đã đăng nhập chưa
+            const currentUser = authService.getCurrentUser();
+            if (!currentUser) {
+                // Nếu chưa đăng nhập, hiển thị thông báo
+                if (typeof redirectToLogin === 'function') {
+                    redirectToLogin();
+                } else {
+                    alert('Please login to add items to cart and make purchases.');
+                }
+                return;
             }
+            
+            // Nếu đã đăng nhập, thực hiện thêm vào giỏ hàng
+            // const name = product.name;
+            // const price = product.price;
+            // const image = product.image;
+            // Tạo id duy nhất cho mỗi sản phẩm (ưu tiên product.id, nếu không có thì name+price)
+        //     let id = product.id || (name + '-' + price);
+        //     const productObj = { id, name, price, image, quantity: 1 };
+        //     addToCartWithQty(productObj, 1);
+        //     updateCartDisplay();
+        //     if (typeof showToast === 'function') {
+        //         showToast('Product added to cart successfully!', 'success', name);
+        //     }
         };
         productsGrid.appendChild(productCard);
     });
@@ -400,4 +414,4 @@
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
         cartBadge.textContent = totalItems;
     }
-    }
+}

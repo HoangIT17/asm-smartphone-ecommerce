@@ -40,10 +40,10 @@ class CartManager {
         <div class="notification-content">
             <div class="d-flex align-items-center">
                 <i class="fas fa-shopping-cart text-warning me-2" style="font-size: 18px;"></i>
-                <span class="fw-bold">Giỏ hàng trống</span>
+                <span class="fw-bold">Cart is empty!</span>
             </div>
             <div class="mt-1">
-                <small class="text-warning">Hãy thêm sản phẩm vào giỏ hàng trước!</small>
+                <small class="text-warning">Please add products to cart first!</small>
             </div>
             <button type="button" class="btn-close ms-2" onclick="this.parentElement.parentElement.remove()"></button>
         </div>
@@ -146,7 +146,7 @@ class CartManager {
                 <span class="fw-bold">${productName}</span>
             </div>
             <div class="mt-1">
-                <small class="text-success">Đã được thêm vào giỏ hàng thành công!</small>
+                <small class="text-success">Added to cart successfully!</small>
             </div>
             <button type="button" class="btn-close ms-2" onclick="this.parentElement.parentElement.remove()"></button>
         </div>
@@ -530,10 +530,10 @@ fetch('footer.html')
         html += `<table class="table mb-0 align-middle">
           <thead><tr>
             <th></th>
-            <th>Sản phẩm</th>
-            <th>Đơn giá</th>
-            <th>Số lượng</th>
-            <th>Thành tiền</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
           </tr></thead><tbody>`;
         cart.forEach(item => {
           let price = typeof item.price === 'string' ? Number(item.price.replace(/[^\d]/g, '')) : item.price;

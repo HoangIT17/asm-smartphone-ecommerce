@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "email": "admin@gmail.com",
+        "password": "123123",
+        "role": "admin",
+        "firstName": "Pham",
+        "lastName": "Hoang",
+        "createdAt": "2025-01-01"
+    },
+    {
+        "id": 2,
+        "email": "customer@gmail.com",
+        "password": "123123",
+        "role": "customer",
+        "firstName": "Marson",
+        "lastName": "Pham",
+        "createdAt": "2025-01-01"
+    }
+]

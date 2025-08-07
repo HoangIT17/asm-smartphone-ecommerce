@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Product Management</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="mb-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">Admin Panel</h1>
+                    <p class="text-gray-500 mt-1">Welcome back, <span id="adminName">Admin</span>!</p>
+                </div>
+            
+            </div>
+            <!-- Navigation -->
+            <div class="border-b border-gray-200">
+                <nav class="flex -mb-px">
+                    <a href="dashboard.html" class="nav-link">
+                        <span class="material-symbols-outlined mr-2">dashboard</span>
+                        Dashboard
+                    </a>
+                    <a href="productmanagement.html" class="nav-link active">
+                        <span class="material-symbols-outlined mr-2">inventory_2</span>
+                        Product Management
+                    </a>
+                    <a href="accountmanagement.html" class="nav-link">
+                        <span class="material-symbols-outlined mr-2">group</span>
+                        Account Management
+                    </a>
+                    <a href="ordermanagement.html" class="nav-link">
+                        <span class="material-symbols-outlined mr-2">shopping_cart</span>
+                        Order Management
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <div class="custom-card mb-6">
+                <div class="custom-card-header flex justify-between items-center">
+                    <h3 class="custom-card-title">Product List</h3>
+                    <div class="flex gap-3 items-center">
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Search products..." 
+                                   class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-64">
+                            <span class="material-symbols-outlined absolute right-3 top-2.5 text-gray-400">search</span>
+                        </div>
+                        <!-- MODIFIED: Changed button to a link -->
+                        <a href="add_product.html" class="custom-btn custom-btn-secondary">
+                            <span class="material-symbols-outlined text-sm">add</span>
+                            Add Product
+                        </a>
+                    </div>
+                </div>
+                <div class="custom-card-body overflow-x-auto">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>ProductCode</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Product Row 1 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://laptoptld.com/wp-content/uploads/2023/05/Screenshot-2023-05-19-101017.png" alt="Product Image" class="product-image rounded-lg w-16 h-16 object-cover">
+                                    <span class="font-semibold text-gray-800">ASUS ROG Zephyrus G14</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP001</span></td>
+                                <td><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Laptop</span></td>
+                                <td class="font-semibold text-green-600">32,990,000 VND</td>
+                                <td><span class="font-bold text-gray-700">15</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 2 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://cdn.tgdd.vn/Products/Images/44/282827/apple-macbook-air-m2-2022-01-750x500.jpg" alt="Product Image" class="product-image rounded-lg w-16 h-16 object-cover">
+                                    <span class="font-semibold text-gray-800">Apple MacBook Air M2</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP002</span></td>
+                                <td><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Laptop</span></td>
+                                <td class="font-semibold text-green-600">25,990,000 VND</td>
+                                <td><span class="font-bold text-gray-700">8</span></td>
+                                <td><span class="status-badge status-low">Low Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 3 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmxbzhG6fw0b8w6aVz75aJk7dfvjPY2ALhfg&s" alt="Product Image" class="product-image rounded-lg w-16 h-16 object-cover">
+                                    <span class="font-semibold text-gray-800">Dell XPS 13</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP003</span></td>
+                                <td><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Laptop</span></td>
+                                <td class="font-semibold text-green-600">29,990,000 VND</td>
+                                <td><span class="font-bold text-gray-700">12</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 4 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://resource.logitech.com/content/dam/gaming/en/products/g305/g305-mint-gallery-1.png" alt="Product Image" class="product-image rounded-lg w-16 h-16 object-cover">
+                                    <span class="font-semibold text-gray-800">Logitech G305</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP004</span></td>
+                                <td><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">Mouse</span></td>
+                                <td class="font-semibold text-green-600">1,590,000 VND</td>
+                                <td><span class="font-bold text-gray-700">35</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 5 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://resource.logitech.com/content/dam/gaming/en/products/g915/g915-gallery/us-g915-wireless-gallery-topdown.png" alt="Product Image" class="product-image rounded-lg w-16 h-16 object-cover">
+                                    <span class="font-semibold text-gray-800">Logitech G915</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP005</span></td>
+                                <td><span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium">Keyboard</span></td>
+                                <td class="font-semibold text-green-600">5,990,000 VND</td>
+                                <td><span class="font-bold text-gray-700">28</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 6 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://resource.logitechg.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g733/gallery/g733-white-gallery-1.png?v=1" alt="Product Image" class="product-image rounded-lg w-16 h-16 object-cover">
+                                    <span class="font-semibold text-gray-800">Logitech G733</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP006</span></td>
+                                <td><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">Headphone</span></td>
+                                <td class="font-semibold text-green-600">2,690,000 VND</td>
+                                <td><span class="font-bold text-gray-700">18</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 7 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://www.hp.com/gb-en/shop/Html/Merch/Images/A2SA8EA-ABU_1750x1285.jpg" alt="Product Image" class="product-image rounded-lg w-16 h-16 object-cover">
+                                    <span class="font-semibold text-gray-800">HP Pavilion 15 i7</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP007</span></td>
+                                <td><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Laptop</span></td>
+                                <td class="font-semibold text-green-600">18,490,000 VND</td>
+                                <td><span class="font-bold text-gray-700">22</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 8 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSfW3A7dmS0ZIkQE9YJxZsQox6kclsSL_Rp2x6u_0yItmDU1Ysbp7jWNpi0bJrRPWN4KoOZ9nDsVYho1T3XVQ8VaVRU6Wjx6mck1tF2Jb9J4Y6H3nj0Hg6xu-8" alt="Product Image" class="product-image rounded-lg w-16 h-16 object-cover">
+                                    <span class="font-semibold text-gray-800">Razer Viper Mini</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP008</span></td>
+                                <td><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">Mouse</span></td>
+                                <td class="font-semibold text-green-600">690,000 VND</td>
+                                <td><span class="font-bold text-gray-700">45</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 9 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRBFht9us42hXs3oX4K6udZSWtD87P3qk6L5EEE5V4tDgGj1_bj2YqxUsuC9Rh26b3rLAxZdnVtlkFwyg0jJwn7_b04J71n5CdY7ZHgyeFp4pwl2N63Mgjgxg" alt="Product Image" class="product-image rounded-lg w-16 h-16 object-cover">
+                                    <span class="font-semibold text-gray-800">Razer Huntsman</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP009</span></td>
+                                <td><span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium">Keyboard</span></td>
+                                <td class="font-semibold text-green-600">4,990,000 VND</td>
+                                <td><span class="font-bold text-gray-700">6</span></td>
+                                <td><span class="status-badge status-low">Low Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 10 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://i5.walmartimages.com/seo/Apple-AirPods-Max-Wireless-Over-Ear-Headphones-Sky-Blue-MGYL3AM-A_a3c12352-69d2-4eb1-972b-f49bad518210.aac6348b4b2fcd16bd5e7ff1fbdc5804.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" alt="Product Image" class="product-image rounded-lg w-16 h-16 object-cover">
+                                    <span class="font-semibold text-gray-800">Apple AirPods Max</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP010</span></td>
+                                <td><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">Headphone</span></td>
+                                <td class="font-semibold text-green-600">2,990,000 VND</td>
+                                <td><span class="font-bold text-gray-700">4</span></td>
+                                <td><span class="status-badge status-low">Low Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Top Selling Products Chart -->
+                <div class="custom-card">
+                    <div class="custom-card-header">
+                        <h3 class="custom-card-title">Top Selling Products</h3>
+                    </div>
+                    <div class="custom-card-body">
+                        <canvas id="topSellingChart"></canvas>
+                    </div>
+                </div>
+                <!-- Inventory Levels Chart -->
+                <div class="custom-card">
+                    <div class="custom-card-header">
+                        <h3 class="custom-card-title">Inventory Levels</h3>
+                    </div>
+                    <div class="custom-card-body">
+                        <canvas id="inventoryLevelsChart"></canvas>
+                    </div>
+                </div>
+                <!-- Conversion Rate by Product Chart -->
+                <div class="custom-card">
+                    <div class="custom-card-header">
+                        <h3 class="custom-card-title">Conversion Rate by Product</h3>
+                    </div>
+                    <div class="custom-card-body">
+                        <canvas id="conversionRateChart"></canvas>
+                    </div>
+                </div>
+                <!-- Product Ratings Chart -->
+                <div class="custom-card">
+                    <div class="custom-card-header">
+                        <h3 class="custom-card-title">Product Ratings Distribution</h3>
+                    </div>
+                    <div class="custom-card-body">
+                        <canvas id="productRatingsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/crud.js"></script>
+</body>
+</html>

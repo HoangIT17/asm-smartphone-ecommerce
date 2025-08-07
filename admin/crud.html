@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Product Management</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="mb-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">Admin Panel</h1>
+                    <p class="text-gray-500 mt-1">Welcome back, Admin!</p>
+                </div>
+                <div class="mt-4 sm:mt-0">
+                    <button class="custom-btn custom-btn-primary">
+                        <span class="material-symbols-outlined">notifications</span>
+                        Notifications
+                    </button>
+                </div>
+            </div>
+            <!-- Navigation -->
+            <div class="border-b border-gray-200">
+                <nav class="flex -mb-px">
+                    <a href="dashboard.html" class="nav-link">
+                        <span class="material-symbols-outlined mr-2">dashboard</span>
+                        Dashboard
+                    </a>
+                    <a href="productmanagement.html" class="nav-link active">
+                        <span class="material-symbols-outlined mr-2">inventory_2</span>
+                        Product Management
+                    </a>
+                    <a href="#" onclick="showSection('accounts')" class="nav-link">
+                        <span class="material-symbols-outlined mr-2">group</span>
+                        Account Management
+                    </a>
+                    <a href="#" onclick="showSection('orders')" class="nav-link">
+                        <span class="material-symbols-outlined mr-2">shopping_cart</span>
+                        Order Management
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <div class="custom-card mb-6">
+                <div class="custom-card-header flex justify-between items-center">
+                    <h3 class="custom-card-title">Product List</h3>
+                    <!-- MODIFIED: Changed button to a link -->
+                    <a href="add_product.html" class="custom-btn custom-btn-secondary">
+                        <span class="material-symbols-outlined text-sm">add</span>
+                        Add Product
+                    </a>
+                </div>
+                <div class="custom-card-body overflow-x-auto">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>ProductCode</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Product Row 1 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://placehold.co/60x60/3b82f6/ffffff?text=👕" alt="Product Image" class="product-image rounded-lg">
+                                    <span class="font-semibold text-gray-800">Cotton T-Shirt</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP001</span></td>
+                                <td><span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium">Fashion</span></td>
+                                <td class="font-semibold text-green-600">300,000 VND</td>
+                                <td><span class="font-bold text-gray-700">120</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 2 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://placehold.co/60x60/10b981/ffffff?text=🎧" alt="Product Image" class="product-image rounded-lg">
+                                    <span class="font-semibold text-gray-800">Bluetooth Headphones</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP002</span></td>
+                                <td><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Electronics</span></td>
+                                <td class="font-semibold text-green-600">1,375,000 VND</td>
+                                <td><span class="font-bold text-gray-700">8</span></td>
+                                <td><span class="status-badge status-low">Low Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 3 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://placehold.co/60x60/f59e0b/ffffff?text=💻" alt="Product Image" class="product-image rounded-lg">
+                                    <span class="font-semibold text-gray-800">Gaming Laptop</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP003</span></td>
+                                <td><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Electronics</span></td>
+                                <td class="font-semibold text-green-600">25,500,000 VND</td>
+                                <td><span class="font-bold text-gray-700">15</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 4 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://placehold.co/60x60/ef4444/ffffff?text=📱" alt="Product Image" class="product-image rounded-lg">
+                                    <span class="font-semibold text-gray-800">iPhone 15 Pro</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP004</span></td>
+                                <td><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Electronics</span></td>
+                                <td class="font-semibold text-green-600">28,990,000 VND</td>
+                                <td><span class="font-bold text-gray-700">25</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 5 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://placehold.co/60x60/8b5cf6/ffffff?text=👟" alt="Product Image" class="product-image rounded-lg">
+                                    <span class="font-semibold text-gray-800">Nike Air Max</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP005</span></td>
+                                <td><span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium">Fashion</span></td>
+                                <td class="font-semibold text-green-600">3,200,000 VND</td>
+                                <td><span class="font-bold text-gray-700">45</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 6 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://placehold.co/60x60/06b6d4/ffffff?text=⌚" alt="Product Image" class="product-image rounded-lg">
+                                    <span class="font-semibold text-gray-800">Apple Watch Series 9</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP006</span></td>
+                                <td><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Electronics</span></td>
+                                <td class="font-semibold text-green-600">9,990,000 VND</td>
+                                <td><span class="font-bold text-gray-700">12</span></td>
+                                <td><span class="status-badge status-low">Low Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 7 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://placehold.co/60x60/f97316/ffffff?text=🎒" alt="Product Image" class="product-image rounded-lg">
+                                    <span class="font-semibold text-gray-800">Leather Backpack</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP007</span></td>
+                                <td><span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-medium">Fashion</span></td>
+                                <td class="font-semibold text-green-600">1,850,000 VND</td>
+                                <td><span class="font-bold text-gray-700">32</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 8 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://placehold.co/60x60/84cc16/ffffff?text=📷" alt="Product Image" class="product-image rounded-lg">
+                                    <span class="font-semibold text-gray-800">Canon EOS R6</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP008</span></td>
+                                <td><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Electronics</span></td>
+                                <td class="font-semibold text-green-600">62,500,000 VND</td>
+                                <td><span class="font-bold text-gray-700">5</span></td>
+                                <td><span class="status-badge status-low">Low Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 9 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://placehold.co/60x60/ec4899/ffffff?text=💄" alt="Product Image" class="product-image rounded-lg">
+                                    <span class="font-semibold text-gray-800">Luxury Lipstick Set</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP009</span></td>
+                                <td><span class="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">Beauty</span></td>
+                                <td class="font-semibold text-green-600">890,000 VND</td>
+                                <td><span class="font-bold text-gray-700">67</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                            <!-- Product Row 10 -->
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="flex items-center gap-3">
+                                    <img src="https://placehold.co/60x60/64748b/ffffff?text=🏠" alt="Product Image" class="product-image rounded-lg">
+                                    <span class="font-semibold text-gray-800">Smart Home Hub</span>
+                                </td>
+                                <td><span class="font-mono text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">CP010</span></td>
+                                <td><span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs font-medium">Home & Garden</span></td>
+                                <td class="font-semibold text-green-600">4,200,000 VND</td>
+                                <td><span class="font-bold text-gray-700">18</span></td>
+                                <td><span class="status-badge status-active">In Stock</span></td>
+                                <td class="flex gap-2">
+                                    <button class="custom-btn-outline p-2 hover:bg-blue-50"><span class="material-symbols-outlined text-lg">edit</span></button>
+                                    <button class="custom-btn-danger p-2 hover:bg-red-50"><span class="material-symbols-outlined text-lg">delete</span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Top Selling Products Chart -->
+                <div class="custom-card">
+                    <div class="custom-card-header">
+                        <h3 class="custom-card-title">Top Selling Products</h3>
+                    </div>
+                    <div class="custom-card-body">
+                        <canvas id="topSellingChart"></canvas>
+                    </div>
+                </div>
+                <!-- Inventory Levels Chart -->
+                <div class="custom-card">
+                    <div class="custom-card-header">
+                        <h3 class="custom-card-title">Inventory Levels</h3>
+                    </div>
+                    <div class="custom-card-body">
+                        <canvas id="inventoryLevelsChart"></canvas>
+                    </div>
+                </div>
+                <!-- Conversion Rate by Product Chart -->
+                <div class="custom-card">
+                    <div class="custom-card-header">
+                        <h3 class="custom-card-title">Conversion Rate by Product</h3>
+                    </div>
+                    <div class="custom-card-body">
+                        <canvas id="conversionRateChart"></canvas>
+                    </div>
+                </div>
+                <!-- Product Ratings Chart -->
+                <div class="custom-card">
+                    <div class="custom-card-header">
+                        <h3 class="custom-card-title">Product Ratings Distribution</h3>
+                    </div>
+                    <div class="custom-card-body">
+                        <canvas id="productRatingsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Custom JS -->
+    <script src="js/crud.js"></script>
+</body>
+</html>

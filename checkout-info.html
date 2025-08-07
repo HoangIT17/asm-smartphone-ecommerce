@@ -18,7 +18,7 @@
 <body style="background: #f5f5fa; min-height: 100vh;">
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <a class="navbar-brand d-flex align-items-center" href="homepages.html">
         <img src="images/logo.png" alt="Logo" class="navbar-logo me-2">
         Hoang Computer
       </a>
@@ -27,135 +27,168 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="products.html">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
+
           <li class="nav-item position-relative">
             <a class="nav-link" href="checkout.html">
               <i class="fas fa-shopping-cart"></i>
               <span class="cart-badge" id="cartBadge">0</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
+          <li class="nav-item" id="authNavItem">
+            <a class="nav-link" href="login.html" id="authNavLink">Login</a>
+          </li>
+          <li class="nav-item dropdown" id="userDropdown" style="display: none;">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdownToggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user"></i>
+              <span id="userName">User</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdownToggle">
+              <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            </ul>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="container py-5" style="max-width: 900px; margin-top: 80px;">
-    <div class="d-flex align-items-center justify-content-center mb-4" style="gap: 18px;">
-      <span class="d-inline-flex align-items-center justify-content-center rounded-circle shadow-sm"
-        style="background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); width: 60px; height: 60px;">
-        <i class="fas fa-user-check fa-2x" style="color: #00bcd4;"></i>
-      </span>
-      <h2 class="fw-bold mb-0" style="
-            color: #ee4d2d;
-            letter-spacing: 1px;
-            font-size: 2.2rem;
-            text-shadow: 0 2px 8px rgba(238,77,45,0.08);
-            background: linear-gradient(90deg, #ee4d2d 60%, #ff9800 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-          ">
-        Customer Information &amp; Payment
-      </h2>
+  <div class="container py-5" style="max-width: 1200px; margin-top: 80px;">
+    <div class="d-flex align-items-center justify-content-center mb-4">
+      <i class="fas fa-shopping-cart fa-2x text-primary me-3"></i>
+      <h2 class="checkout-title fade-in text-center fw-bold mb-0" style="color: #2d4aee; letter-spacing: 1px;">Customer information & Payment</h2>
     </div>
-    <!-- Cart Items -->
-    <div class="cart-table fade show card shadow-lg border-0 mb-4 rounded-4 overflow-hidden">
-      <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center" style="background: #fff;">
-        <i class="fas fa-shopping-cart text-warning me-2"></i>
-        <span class="fw-bold text-dark" style="font-size: 1.2rem;">Cart Items</span>
-      </div>
-      <div class="card-body p-0">
-        <div id="checkoutItems"></div>
-      </div>
-    </div>
-    <!-- Order Summary -->
-    <div class="order-summary-card fade show card shadow-lg border-0 mb-4 rounded-4 overflow-hidden">
-      <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center" style="background: #fff;">
-        <i class="fas fa-calculator text-success me-2"></i>
-        <span class="fw-bold text-dark" style="font-size: 1.2rem;">Order Summary</span>
-      </div>
-      <div class="card-body pb-2">
-        <div class="summary-row d-flex justify-content-between mb-2">
-          <span>Subtotal</span>
-          <span id="orderSubtotal" class="fw-bold text-dark">0 ₫</span>
-        </div>
-        <div class="summary-row d-flex justify-content-between mb-2">
-          <span>Shipping Fee</span>
-          <span id="orderShipping" class="fw-bold text-dark">30,000 ₫</span>
-        </div>
-        <div class="summary-row d-flex justify-content-between mb-2">
-          <span>Tax (10%)</span>
-          <span id="orderTax" class="fw-bold text-dark">0 ₫</span>
-        </div>
-        <div class="summary-row total-row d-flex justify-content-between border-top pt-3 mt-3">
-          <span class="fw-bold" style="font-size: 1.1rem; color: #ee4d2d;">Total Payment</span>
-          <span id="orderTotal" class="fw-bold" style="font-size: 1.2rem; color: #ee4d2d;">0 ₫</span>
+
+    <div class="row justify-content-center gx-4 gy-4">
+      <!-- Cart Items -->
+      <div class="col-lg-8 col-md-7">
+        <div class="cart-table fade show card shadow-lg border-0 mb-4 rounded-4 overflow-hidden">
+          <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center" style="background: #fff !important; color: #333;">
+            <i class="fas fa-shopping-cart text-primary me-2"></i>
+            <span class="fw-bold text-dark" style="font-size: 1.2rem;">Your Cart</span>
+          </div>
+          <div class="card-body p-0">
+            <div id="checkoutItems"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- Customer Info Form -->
-    <div class="card shadow-lg border-0 rounded-4 overflow-hidden mb-4">
-      <div class="card-body">
-        <form id="customerInfoForm">
-          <div class="mb-3">
-            <label class="form-label">Full Name <span class="text-danger">*</span></label>
-            <input type="text" class="form-control rounded-pill border-2 py-2 px-3" id="customerName" required
-              placeholder="Enter your full name">
+
+      <!-- Order Summary & Customer Info -->
+      <div class="col-lg-4 col-md-5">
+        <!-- Order Summary -->
+        <div class="order-summary-card fade show card shadow-lg border-0 mb-4 rounded-4 overflow-hidden">
+          <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center" style="background: #fff !important; color: #333;">
+            <i class="fas fa-calculator text-success me-2"></i>
+            <span class="fw-bold text-dark" style="font-size: 1.2rem;">Order Summary</span>
           </div>
-          <div class="mb-3">
-            <label class="form-label">Phone Number <span class="text-danger">*</span></label>
-            <input type="tel" class="form-control rounded-pill border-2 py-2 px-3" id="customerPhone" required
-              pattern="[0-9]{9,12}" placeholder="Enter your phone number">
+          <div class="card-body pb-2">
+            <div class="summary-row d-flex justify-content-between mb-2">
+              <span>Subtotal</span>
+              <span id="orderSubtotal" class="fw-bold text-dark">0 ₫</span>
+            </div>
+            <div class="summary-row d-flex justify-content-between mb-2">
+              <span>Shipping Fee</span>
+              <span id="orderShipping" class="fw-bold text-dark">30,000 ₫</span>
+            </div>
+            <div class="summary-row d-flex justify-content-between mb-2">
+              <span>Tax (10%)</span>
+              <span id="orderTax" class="fw-bold text-dark">0 ₫</span>
+            </div>
+            <div class="summary-row total-row d-flex justify-content-between border-top pt-3 mt-3">
+              <span class="fw-bold" style="font-size: 1.1rem; color: #ee4d2d;">Total Payment</span>
+              <span id="orderTotal" class="fw-bold" style="font-size: 1.2rem; color: #ee4d2d;">0 ₫</span>
+            </div>
           </div>
-          <div class="mb-3">
-            <label class="form-label">Email <span class="text-danger">*</span></label>
-            <input type="email" class="form-control rounded-pill border-2 py-2 px-3" id="customerEmail" required
-              placeholder="Enter your email">
+        </div>
+
+        <!-- Customer Info Form -->
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden mb-4">
+          <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center" style="background: #fff !important; color: #333;">
+            <i class="fas fa-user-edit text-info me-2"></i>
+            <span class="fw-bold text-dark" style="font-size: 1.2rem;">Customer Information</span>
           </div>
-          <div class="mb-3">
-            <label class="form-label">Province/City <span class="text-danger">*</span></label>
-            <select class="form-select select2 rounded-pill border-2 py-2 px-3" id="selectProvince" required
-              style="width:100%"></select>
+          <div class="card-body">
+            <form id="customerInfoForm">
+              <div class="mb-3">
+                <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control rounded-pill border-2 py-2 px-3" id="customerName" required
+                  placeholder="Enter your full name">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Phone Number <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control rounded-pill border-2 py-2 px-3" id="customerPhone" required
+                  pattern="[0-9]{9,12}" placeholder="Enter your phone number">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email <span class="text-danger">*</span></label>
+                <input type="email" class="form-control rounded-pill border-2 py-2 px-3" id="customerEmail" required
+                  placeholder="Enter your email">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Province/City <span class="text-danger">*</span></label>
+                <select class="form-select select2 rounded-pill border-2 py-2 px-3" id="selectProvince" required
+                  style="width:100%"></select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">District <span class="text-danger">*</span></label>
+                <select class="form-select select2 rounded-pill border-2 py-2 px-3" id="selectDistrict" required
+                  style="width:100%"></select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Address Detail <span class="text-danger">*</span></label>
+                <input type="text" class="form-control rounded-pill border-2 py-2 px-3" id="customerAddressDetail" required
+                  placeholder="House number, street, ...">
+              </div>
+              <div class="mb-4">
+                <label class="form-label">Payment Method <span class="text-danger">*</span></label>
+                <select class="form-select rounded-pill border-2 py-2 px-3" id="paymentMethod" required>
+                  <option value="">Select payment method</option>
+                  <option value="cod">Cash on Delivery (COD)</option>
+                  <option value="bank">Bank Transfer</option>
+                  <option value="momo">MoMo E-wallet</option>
+                  <option value="zalopay">ZaloPay</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-lg w-100 rounded-pill fw-bold"
+                style="background: #ee4d2d; color: #fff; letter-spacing: 1px;">Confirm purchase</button>
+            </form>
+            <div id="confirmationMessage" class="alert alert-success mt-4 d-none animate__animated animate__fadeIn"></div>
           </div>
-          <div class="mb-3">
-            <label class="form-label">District <span class="text-danger">*</span></label>
-            <select class="form-select select2 rounded-pill border-2 py-2 px-3" id="selectDistrict" required
-              style="width:100%"></select>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Address Detail <span class="text-danger">*</span></label>
-            <input type="text" class="form-control rounded-pill border-2 py-2 px-3" id="customerAddressDetail" required
-              placeholder="House number, street, ...">
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Payment Method <span class="text-danger">*</span></label>
-            <select class="form-select rounded-pill border-2 py-2 px-3" id="paymentMethod" required>
-              <option value="">Select payment method</option>
-              <option value="cod">Cash on Delivery (COD)</option>
-              <option value="bank">Bank Transfer</option>
-              <option value="momo">MoMo E-wallet</option>
-              <option value="zalopay">ZaloPay</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-lg w-100 rounded-pill fw-bold"
-            style="background: #ee4d2d; color: #fff; letter-spacing: 1px;">Confirm Purchase</button>
-        </form>
-        <div id="confirmationMessage" class="alert alert-success mt-4 d-none animate__animated animate__fadeIn"></div>
+        </div>
       </div>
     </div>
   </div>
   <div id="footerContainer"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="./js/auth.js"></script>
+  <script>
+    // Handle user authentication display
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentUser = authService.getCurrentUser();
+      const authNavItem = document.getElementById('authNavItem');
+      const userDropdown = document.getElementById('userDropdown');
+      const userName = document.getElementById('userName');
+      
+      if (currentUser) {
+        // User is logged in
+        authNavItem.style.display = 'none';
+        userDropdown.style.display = 'block';
+        userName.textContent = `${currentUser.firstName} ${currentUser.lastName}`;
+      } else {
+        // User is not logged in
+        authNavItem.style.display = 'block';
+        userDropdown.style.display = 'none';
+      }
+    });
+    
+    // Logout function
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        authService.logout();
+      }
+    }
+  </script>
   <script src="./js/vn-province-district.js"></script>
   <script src="./js/checkout-info.js"></script>
 </body>

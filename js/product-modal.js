@@ -1,3 +1,8 @@
+// Initialize auth service if not available
+if (typeof authService === 'undefined') {
+  const authService = new AuthService();
+}
+
 function showProductModal(product) {
   document.getElementById('productModalTitle').textContent = product.name;
   document.getElementById('productModalImage').src = product.image;
@@ -36,6 +41,12 @@ function showProductModal(product) {
 
   // Add to Cart button
   document.getElementById('productModalAddCart').onclick = function () {
+    // Check if user is logged in
+    if (!authService.isLoggedIn()) {
+      showLoginToast('Please login to add items to cart!', 'warning');
+      return;
+    }
+    
     const qty = parseInt(document.getElementById('productModalQty').value) || 1;
     const selectedColor = document.getElementById('selectedColor').textContent;
     const selectedSize = document.getElementById('selectedSize').textContent;
@@ -46,6 +57,12 @@ function showProductModal(product) {
 
   // Buy Now button
   document.getElementById('productModalBuyNow').onclick = function () {
+    // Check if user is logged in
+    if (!authService.isLoggedIn()) {
+      showLoginToast('Please login to purchase this item!', 'warning');
+      return;
+    }
+    
     const qty = parseInt(document.getElementById('productModalQty').value) || 1;
     const selectedColor = document.getElementById('selectedColor').textContent;
     const selectedSize = document.getElementById('selectedSize').textContent;
@@ -284,4 +301,137 @@ function showToast(_, type = 'success', productName = '') {
 // Keep the old function for backward compatibility
 function addToCartWithQty(product, qty) {
   addToCartWithQtyAndColor(product, qty, 'Blue', 'M'); // Default color and size
-} 
+}
+
+// Function to show login toast notification
+function showLoginToast(message, type = 'warning') {
+  const toastContainer = getOrCreateToastContainer();
+  
+  // Create toast element
+  const toast = document.createElement('div');
+  toast.className = `toast align-items-center text-dark bg-${type === 'success' ? 'success' : type === 'warning' ? 'warning' : 'primary'} border-0 shadow-lg`;
+  toast.setAttribute('role', 'alert');
+  toast.setAttribute('aria-live', 'assertive');
+  toast.setAttribute('aria-atomic', 'true');
+  toast.setAttribute('data-bs-autohide', 'false');
+  
+  // Add slide down animation
+  toast.style.transform = 'translateY(-100%)';
+  toast.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+  toast.style.opacity = '0';
+  
+  toast.innerHTML = `
+    <div class="d-flex">
+      <div class="toast-body fw-bold">
+        <i class="fas fa-exclamation-triangle me-2"></i>
+        ${message}
+      </div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  `;
+  
+  toastContainer.appendChild(toast);
+  
+  // Initialize Bootstrap toast
+  const bsToast = new bootstrap.Toast(toast);
+  
+  // Trigger slide down animation
+  requestAnimationFrame(() => {
+    toast.style.transform = 'translateY(0)';
+    toast.style.opacity = '1';
+  });
+  
+  // Show toast
+  bsToast.show();
+  
+  // Auto hide after 2000ms (2 seconds) to match redirect timing
+  setTimeout(() => {
+    hideLoginToast(toast, bsToast);
+  }, 2000);
+  
+  // Handle manual close
+  toast.addEventListener('hidden.bs.toast', () => {
+    toast.remove();
+  });
+  
+  // Handle close button click
+  const closeBtn = toast.querySelector('.btn-close');
+  closeBtn.addEventListener('click', () => {
+    hideLoginToast(toast, bsToast);
+  });
+  
+  // Redirect to login page after 2 seconds
+  setTimeout(() => {
+    window.location.href = 'login.html';
+  }, 2000);
+}
+
+// Function to hide toast with animation
+function hideLoginToast(toastElement, bsToast) {
+  toastElement.style.transform = 'translateY(-100%)';
+  toastElement.style.opacity = '0';
+  
+  setTimeout(() => {
+    bsToast.hide();
+  }, 300);
+}
+
+// Function to get or create toast container
+function getOrCreateToastContainer() {
+  let toastContainer = document.getElementById('toastContainer');
+  
+  if (!toastContainer) {
+    toastContainer = document.createElement('div');
+    toastContainer.id = 'toastContainer';
+    toastContainer.className = 'toast-container-custom';
+    document.body.appendChild(toastContainer);
+  }
+  
+  return toastContainer;
+}
+
+// Add toast container styles
+(function() {
+  if (document.getElementById('login-toast-style')) return;
+  const style = document.createElement('style');
+  style.id = 'login-toast-style';
+  style.innerHTML = `
+    .toast-container-custom {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+    
+    .toast {
+      min-width: 350px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .toast.bg-warning {
+      background-color: #ffc107 !important;
+      border-left: 4px solid #ff9800;
+    }
+    
+    .toast.bg-success {
+      background-color: #28a745 !important;
+      border-left: 4px solid #198754;
+    }
+    
+    .toast-body {
+      font-size: 14px;
+      padding: 12px 16px;
+    }
+    
+    .btn-close {
+      filter: none;
+      opacity: 0.8;
+    }
+    
+    .btn-close:hover {
+      opacity: 1;
+    }
+  `;
+  document.head.appendChild(style);
+})();

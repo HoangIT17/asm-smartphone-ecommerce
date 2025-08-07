@@ -17,7 +17,7 @@
 <body>
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <a class="navbar-brand d-flex align-items-center" href="homepages.html">
         <img src="images/logo.png" alt="Logo" class="navbar-logo me-2">
         Hoang Computer
       </a>
@@ -26,23 +26,19 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+          <li class="nav-item" id="authNavItem">
+            <a class="nav-link" href="login.html" id="authNavLink">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="products.html">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-          <li class="nav-item position-relative">
-            <a class="nav-link" href="checkout.html">
-              <i class="fas fa-shopping-cart"></i>
-              <span class="cart-badge" id="cartBadge">0</span>
+          <li class="nav-item dropdown" id="userDropdown" style="display: none;">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdownToggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user"></i>
+              <span id="userName">User</span>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdownToggle">
+              <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -402,6 +398,34 @@
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="./js/auth.js"></script>
+  <script>
+    // Handle user authentication display
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentUser = authService.getCurrentUser();
+      const authNavItem = document.getElementById('authNavItem');
+      const userDropdown = document.getElementById('userDropdown');
+      const userName = document.getElementById('userName');
+      
+      if (currentUser) {
+        // User is logged in
+        authNavItem.style.display = 'none';
+        userDropdown.style.display = 'block';
+        userName.textContent = `${currentUser.firstName} ${currentUser.lastName}`;
+      } else {
+        // User is not logged in
+        authNavItem.style.display = 'block';
+        userDropdown.style.display = 'none';
+      }
+    });
+    
+    // Logout function
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        authService.logout();
+      }
+    }
+  </script>
   <script src="./js/cart.js"></script>
   <script src="./js/contact.js"></script>
 </body>

@@ -1,0 +1,214 @@
+/* Custom CSS - Đây là phần CSS tùy chỉnh chính */
+body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background-color: #f0f2f5; /* Màu nền xám nhạt */
+}
+
+/* --- Main Theme Colors --- */
+:root {
+    --primary-color: #4f46e5; /* Indigo */
+    --secondary-color: #10b981; /* Emerald */
+    --background-color: #f0f2f5;
+    --card-background: #ffffff;
+    --text-color-dark: #1f2937;
+    --text-color-light: #6b7280;
+    --border-color: #e5e7eb;
+}
+
+/* --- Bootstrap Modal Customization --- */
+.modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 12px 12px 0 0;
+    border-bottom: none;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgb(79 70 229 / 0.25);
+}
+
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgb(79 70 229 / 0.25);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #3730a3;
+    border-color: #3730a3;
+}
+
+/* --- Toast Container --- */
+.toast-container {
+    z-index: 9999;
+}
+
+/* --- Upload Area Styling --- */
+.upload-area {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: var(--primary-color) !important;
+    background-color: #f8f9fa;
+}
+
+.upload-area.dragover {
+    border-color: var(--primary-color) !important;
+    background-color: #e3f2fd;
+}
+
+.nav-pills .nav-link {
+    border-radius: 20px;
+    padding: 8px 16px;
+    margin-right: 8px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--primary-color);
+}
+
+/* --- Navigation Link Styling --- */
+.nav-link {
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: var(--text-color-light);
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    border-radius: 8px 8px 0 0;
+}
+.nav-link.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    background-color: var(--card-background);
+}
+.nav-link:not(.active):hover {
+    color: var(--primary-color);
+    background-color: #f9fafb;
+}
+
+
+/* --- Card Styling --- */
+.custom-card {
+    background-color: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transition: all 0.3s ease-in-out;
+    border: 1px solid var(--border-color);
+}
+.custom-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+}
+.custom-card-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.custom-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color-dark);
+}
+.custom-card-body {
+    padding: 1.5rem;
+}
+
+/* --- Button Styling --- */
+.custom-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+.custom-btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+.custom-btn-primary:hover {
+    background-color: #4338ca; /* Darker Indigo */
+}
+.custom-btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+.custom-btn-secondary:hover {
+    background-color: #059669; /* Darker Emerald */
+}
+.custom-btn-danger {
+    background-color: #ef4444; /* Red */
+    color: white;
+}
+.custom-btn-danger:hover {
+    background-color: #dc2626; /* Darker Red */
+}
+.custom-btn-outline {
+    background-color: transparent;
+    color: var(--text-color-dark);
+    border-color: var(--border-color);
+}
+.custom-btn-outline:hover {
+    background-color: #f9fafb; /* Light gray */
+    border-color: #d1d5db;
+}
+
+/* --- Table Styling --- */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.custom-table th, .custom-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color-dark);
+}
+.custom-table th {
+    font-weight: 600;
+    background-color: #f9fafb;
+    color: var(--text-color-light);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+}
+.custom-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+.product-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.status-active {
+    background-color: #dcfce7; /* Green light */
+    color: #166534; /* Green dark */
+}
+.status-low {
+    background-color: #fee2e2; /* Red light */
+    color: #991b1b; /* Red dark */
+}
