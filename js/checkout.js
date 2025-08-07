@@ -185,7 +185,15 @@ class CheckoutManager {
     const checkoutContent = document.getElementById('checkoutContent');
 
     if (cart.length === 0) {
-      emptyCartMessage.innerHTML = `<i class="fas fa-shopping-cart fa-3x"></i><h3>Your cart is empty</h3><p>Add products to your cart to continue shopping</p><a href="products.html" class="btn btn-continue-shopping"><i class="fas fa-shopping-bag me-2"></i>Continue Shopping</a>`;
+      emptyCartMessage.innerHTML = `<i class="fas fa-shopping-cart fa-3x"></i>
+      <h3>Your cart is empty
+      </h3>
+      <p>Add products to your cart to continue shopping</p>
+      <a 
+      href="products.html" class="btn btn-continue-shopping">
+      <i class="fas fa-shopping-bag me-2"></i>
+      Continue Shopping
+      </a>`;
       emptyCartMessage.style.display = 'block';
       checkoutContent.style.display = 'none';
       return;
