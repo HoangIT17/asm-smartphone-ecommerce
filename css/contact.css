@@ -189,6 +189,15 @@ body {
   border-radius: 2px;
 }
 
+.section-title-center-underline {
+  position: relative;
+  display: inline-block;
+}
+.section-title-center-underline::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 /* Responsive Adjustments */
 @media (max-width: 992px) {
   .hero-section {
