@@ -193,10 +193,9 @@ document.addEventListener('DOMContentLoaded', function () {
   // Password match validation
   function validatePasswordMatch() {
     if (passwordInput.value !== confirmPasswordInput.value) {
-      confirmPasswordInput.setCustomValidity('Passwords do not match.');
-      confirmPasswordInput.classList.add('is-invalid');
-      confirmPasswordInput.classList.remove('is-valid');
+      showError(confirmPasswordInput, 'Passwords do not match.');
     } else {
+      clearError(confirmPasswordInput);
       confirmPasswordInput.setCustomValidity('');
       if (confirmPasswordInput.value) {
         confirmPasswordInput.classList.add('is-valid');
